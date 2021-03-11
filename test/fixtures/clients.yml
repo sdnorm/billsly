@@ -18,9 +18,11 @@
 #  zip_code               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  account_id             :bigint           not null
 #
 # Indexes
 #
+#  index_clients_on_account_id            (account_id)
 #  index_clients_on_email                 (email) UNIQUE
 #  index_clients_on_reset_password_token  (reset_password_token) UNIQUE
 #

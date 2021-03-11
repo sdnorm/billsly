@@ -88,3 +88,5 @@ gem "whenever", require: false
 if File.exist?("config/jumpstart/Gemfile")
   eval_gemfile "config/jumpstart/Gemfile"
 end
+
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'

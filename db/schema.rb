@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_190615) do
+ActiveRecord::Schema.define(version: 2021_03_11_202714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,12 +135,10 @@ ActiveRecord::Schema.define(version: 2021_03_11_190615) do
   end
 
   create_table "client_profiles", force: :cascade do |t|
-    t.bigint "account_id", null: false
     t.bigint "client_id", null: false
     t.text "reminder_message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_client_profiles_on_account_id"
     t.index ["client_id"], name: "index_client_profiles_on_client_id"
   end
 
@@ -160,6 +158,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_190615) do
     t.string "city"
     t.string "state"
     t.string "zip_code"
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_clients_on_account_id"
     t.index ["email"], name: "index_clients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
@@ -292,7 +292,6 @@ ActiveRecord::Schema.define(version: 2021_03_11_190615) do
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "api_tokens", "users"
-  add_foreign_key "client_profiles", "accounts"
   add_foreign_key "client_profiles", "clients"
   add_foreign_key "reminders", "account_clients"
   add_foreign_key "user_connected_accounts", "users"
