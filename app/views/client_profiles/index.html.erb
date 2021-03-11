@@ -12,7 +12,6 @@
       <table class="table">
         <thead>
           <tr>
-            <th class="p-3 uppercase text-left text-xs"><%= sortable @client_profiles, :account_id, "Account", class: "text-gray-700" %></th>
             <th class="p-3 uppercase text-left text-xs"><%= sortable @client_profiles, :client_id, "Client", class: "text-gray-700" %></th>
             <th class="p-3 uppercase text-left text-xs"><%= sortable @client_profiles, :reminder_message, "Reminder message", class: "text-gray-700" %></th>
             <th class="p-3 uppercase text-left text-xs text-gray-700 w-20"><%= t("shared.scaffold.actions") %></th>
@@ -22,7 +21,6 @@
         <tbody>
         <% @client_profiles.each do |client_profile| %>
           <tr class="group border-t border-gray-400 hover:bg-gray-100">
-                      <td class="p-3"><%= client_profile.account_id %></td>
                       <td class="p-3"><%= client_profile.client_id %></td>
                       <td class="p-3"><%= client_profile.reminder_message %></td>
           

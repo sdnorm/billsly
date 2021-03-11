@@ -58,6 +58,6 @@ class ClientProfilesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def client_profile_params
-    params.require(:client_profile).permit(:account_id, :client_id, :reminder_message)
+    params.require(:client_profile).permit(:client_id, :reminder_message)
   end
 end

@@ -4,20 +4,19 @@
       <h1 class="h3"><%= link_to "Client Profiles", client_profiles_path %> > Client Profile #<%= @client_profile.id %></h1>
       <%= link_to t("edit"), edit_client_profile_path(@client_profile), class: "btn btn-link" %>
     </div>
-
     <div class="bg-white rounded shadow p-8">
-            <div class="mb-4">
-        <h5>Account</h5>
-        <%= @client_profile.account %>
-      </div>
-            <div class="mb-4">
+      <div class="mb-4">
         <h5>Client</h5>
-        <%= @client_profile.client %>
+        <%= @client_profile.client.first_name %>
       </div>
-            <div class="mb-4">
+      <div class="mb-4">
+        <h5>Account</h5>
+        <%= @client_profile.client.accounts.first.name %>
+      </div>
+      <div class="mb-4">
         <h5>Reminder message</h5>
         <%= @client_profile.reminder_message %>
       </div>
-          </div>
+    </div>
   </div>
 </div>

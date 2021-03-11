@@ -33,5 +33,8 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :client_profiles
+
+  has_many :account_clients, dependent: :destroy
+  has_many :accounts, through: :account_clients
   
 end
