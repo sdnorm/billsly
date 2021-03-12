@@ -1,5 +1,6 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  resources :customers
   resources :reminders
   resources :client_profiles
   devise_for :clients
@@ -105,7 +106,8 @@ Rails.application.routes.draw do
 
   authenticated :user do
     # client dashboard
-    root to: "dashboard#show", as: :user_root
+    # root to: "dashboard#show", as: :user_root
+    root to: "customers#index", as: :user_root
     # client show/detail page
     get '/clients/:id', to: "dashboard#client_detail", as: :client_detail
   end
