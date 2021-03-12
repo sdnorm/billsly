@@ -32,7 +32,7 @@ users = User.all
 
 puts "clients"
 100.times do
-  account_id = Array(1..10).shuffle.first
+  account_id = Array(3..12).shuffle.first
   # puts "account id = #{account_id}"
   Client.create!(
     email: Faker::Internet.email,
