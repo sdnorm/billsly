@@ -36,5 +36,9 @@ class Client < ApplicationRecord
 
   has_many :account_clients, dependent: :destroy
   has_many :accounts, through: :account_clients
+
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
   
 end

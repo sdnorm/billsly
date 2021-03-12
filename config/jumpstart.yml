@@ -1,13 +1,13 @@
 --- !ruby/object:Jumpstart::Configuration
-application_name: Jumpstart
-business_name: Jumpstart Company, LLC
+application_name: Billsly
+business_name: Billsly, LLC
 domain: example.com
-support_email: support@example.com
+support_email: support@billsly.co
 default_from_email: Jumpstart <support@example.com>
 business_address: ''
-background_job_processor: async
+background_job_processor: sidekiq
 email_provider: ''
 personal_accounts: true
 livereload: false
-solargraph: false
+solargraph: true
 register_with_account: false

@@ -1,3 +1,2 @@
 web: bundle exec rails s
-
-release: rails db:migrate
+worker: bundle exec sidekiq
