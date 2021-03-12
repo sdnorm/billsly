@@ -104,7 +104,10 @@ Rails.application.routes.draw do
   match "/500", via: :all, to: "errors#internal_server_error"
 
   authenticated :user do
+    # client dashboard
     root to: "dashboard#show", as: :user_root
+    # client show/detail page
+    get '/clients/:id', to: "dashboard#client_detail", as: :client_detail
   end
 
   # Public marketing homepage

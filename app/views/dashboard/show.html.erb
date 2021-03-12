@@ -27,7 +27,7 @@
               <% @clients.each do |c| %>
                 <tr class="bg-white">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
-                    <%= c.full_name %>
+                    <%= link_to c.full_name, client_detail_path(c) %>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                     <%= c.email %>
