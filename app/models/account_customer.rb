@@ -1,4 +1,4 @@
-class AccountClient < ApplicationRecord
+class AccountCustomer < ApplicationRecord
 
   belongs_to :account
   belongs_to :customer
