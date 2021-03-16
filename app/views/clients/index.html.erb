@@ -8,35 +8,6 @@
   </div>
 
   <% if @clients.any? %>
-    <div class="bg-white rounded shadow table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="p-3 uppercase text-left text-xs"><%= sortable @clients, :first_name, "First name", class: "text-gray-700" %></th>
-            <th class="p-3 uppercase text-left text-xs"><%= sortable @clients, :last_name, "Last name", class: "text-gray-700" %></th>
-            <th class="p-3 uppercase text-left text-xs"><%= sortable @clients, :email, "Email", class: "text-gray-700" %></th>
-            <th class="p-3 uppercase text-left text-xs"><%= sortable @clients, :phone_number, "Phone number", class: "text-gray-700" %></th>
-            <th class="p-3 uppercase text-left text-xs text-gray-700 w-20"><%= t("shared.scaffold.action") %></th>
-          </tr>
-        </thead>
-
-        <tbody>
-        <% @clients.each do |client| %>
-          <tr class="group border-t border-gray-400 hover:bg-gray-100">
-            <td class="p-3"><%= client.first_name %></td>
-            <td class="p-3"><%= client.last_name %></td>
-            <td class="p-3"><%= client.email %></td>
-            <td class="p-3"><%= client.phone_number %></td>
-            <td>
-              <%= link_to t("shared.scaffold.view"), client, class: "btn btn-link no-underline" %>
-              <%= link_to t("shared.scaffold.view"), client, class: "btn btn-link no-underline" %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-
     <div class="flex flex-col">
       <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
