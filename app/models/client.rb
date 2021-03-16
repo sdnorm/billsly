@@ -2,43 +2,40 @@
 #
 # Table name: clients
 #
-#  id                     :bigint           not null, primary key
-#  address1               :string
-#  address2               :string
-#  city                   :string
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  first_name             :string
-#  last_name              :string
-#  phone_number           :string
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
-#  state                  :string
-#  zip_code               :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  account_id             :bigint           not null
-#
-# Indexes
-#
-#  index_clients_on_account_id            (account_id)
-#  index_clients_on_email                 (email) UNIQUE
-#  index_clients_on_reset_password_token  (reset_password_token) UNIQUE
+#  id           :bigint           not null, primary key
+#  address1     :string
+#  address2     :string
+#  city         :string
+#  email        :string
+#  first_name   :string
+#  last_name    :string
+#  phone_number :string
+#  state        :string
+#  zip_code     :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 class Client < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
-  has_many :client_profiles
 
   has_many :account_clients, dependent: :destroy
   has_many :accounts, through: :account_clients
 
+  has_many :client_profiles
+
   def full_name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}"
   end
-  
+
+  def full_street_address
+    if address2.nil?
+      "#{address1}"
+    else
+      "#{address1} #{address2}"
+    end
+  end
+
+  def city_state_zip
+    "#{city}, #{state} #{zip_code}"
+  end
+
 end

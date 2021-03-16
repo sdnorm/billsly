@@ -13,43 +13,39 @@ puts "users & accounts"
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.first_name,
     password: "password",
-    accepted_terms_at: Time.zone.now,
-    accepted_privacy_at: Time.zone.now,
+    # accepted_terms_at: Time.zone.now,
+    # accepted_privacy_at: Time.zone.now,
     terms_of_service: true
   )
 end
 
-users = User.all
-
-# 10.times do 
-#   Account.create!(
-#     name: Faker::Company.name,
-#     owner_id: users.pluck(:id).shift()
-#   )
-# end
-
-# accounts = Account.all.pluck(:id)
-
+puts " "
 puts "clients"
 100.times do
-  account_id = Array(3..12).shuffle.first
-  # puts "account id = #{account_id}"
   Client.create!(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.first_name,
     phone_number: Faker::PhoneNumber.cell_phone_in_e164,
-    account_id: account_id,
-    password: "password"
   )
 end
 
-clients = Client.all.pluck(:id)
+puts " "
+puts "Account Clients"
+Client.all.each do |c|
+  account_id = Account.pluck(:id).shuffle.first
+  AccountClient.create(
+    account_id: account_id,
+    client_id: c.id
+  )
+end
 
+puts " "
 puts "client profiles"
-100.times do
+Client.all.each do |c|
   ClientProfile.create!(
-    client_id: clients.shift(),
+    client_id: c.id,
+    account_id: c.accounts.first.id,
     reminder_message: Faker::TvShows::MichaelScott.quote
   )
 end

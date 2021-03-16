@@ -1,12 +1,12 @@
 <div class="container mx-auto my-8 px-4">
   <div class="max-w-3xl mx-auto">
     <div class="flex justify-between items-center mb-4">
-      <h1 class="h3"><%= t("shared.scaffold.edit.title", model: "Customer") %></h1>
-      <%= link_to t("cancel"), @customer, class: "btn btn-link" %>
+      <h1 class="h3"><%= t("shared.scaffold.new.title", model: "Client") %></h1>
+      <%= link_to t("cancel"), clients_path, class: "btn btn-link" %>
     </div>
 
     <div class="bg-white rounded shadow p-8">
-      <%= render "form", customer: @customer %>
+      <%= render "form", client: @client %>
     </div>
   </div>
 </div>

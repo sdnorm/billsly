@@ -10,27 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_032349) do
+ActiveRecord::Schema.define(version: 2021_03_16_202256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_clients", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "client_id", null: false
+    t.bigint "account_id"
+    t.bigint "client_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_account_clients_on_account_id"
     t.index ["client_id"], name: "index_account_clients_on_client_id"
-  end
-
-  create_table "account_customers", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "customer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_account_customers_on_account_id"
-    t.index ["customer_id"], name: "index_account_customers_on_customer_id"
   end
 
   create_table "account_invitations", force: :cascade do |t|
@@ -144,57 +135,27 @@ ActiveRecord::Schema.define(version: 2021_03_16_032349) do
   end
 
   create_table "client_profiles", force: :cascade do |t|
+    t.bigint "account_id", null: false
     t.bigint "client_id", null: false
     t.text "reminder_message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_client_profiles_on_account_id"
     t.index ["client_id"], name: "index_client_profiles_on_client_id"
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "phone_number"
     t.string "first_name"
     t.string "last_name"
-    t.string "address1"
-    t.string "address2"
-    t.string "city"
-    t.string "state"
-    t.string "zip_code"
-    t.bigint "account_id", null: false
-    t.index ["account_id"], name: "index_clients_on_account_id"
-    t.index ["email"], name: "index_clients_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
-  end
-
-  create_table "customer_profiles", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "customer_id", null: false
-    t.text "reminder_message"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_customer_profiles_on_account_id"
-    t.index ["customer_id"], name: "index_customer_profiles_on_customer_id"
-  end
-
-  create_table "customers", force: :cascade do |t|
     t.string "email"
     t.string "phone_number"
-    t.string "first_name"
-    t.string "last_name"
     t.string "address1"
     t.string "address2"
     t.string "city"
     t.string "state"
     t.string "zip_code"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -265,10 +226,12 @@ ActiveRecord::Schema.define(version: 2021_03_16_032349) do
 
   create_table "reminders", force: :cascade do |t|
     t.text "message"
-    t.bigint "account_client_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_client_id"], name: "index_reminders_on_account_client_id"
+    t.bigint "account_id", null: false
+    t.bigint "client_id", null: false
+    t.index ["account_id"], name: "index_reminders_on_account_id"
+    t.index ["client_id"], name: "index_reminders_on_client_id"
   end
 
   create_table "user_connected_accounts", force: :cascade do |t|
@@ -325,10 +288,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_032349) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "account_clients", "accounts"
-  add_foreign_key "account_clients", "clients"
-  add_foreign_key "account_customers", "accounts"
-  add_foreign_key "account_customers", "customers"
   add_foreign_key "account_invitations", "accounts"
   add_foreign_key "account_invitations", "users", column: "invited_by_id"
   add_foreign_key "account_users", "accounts"
@@ -336,10 +295,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_032349) do
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "client_profiles", "accounts"
   add_foreign_key "client_profiles", "clients"
-  add_foreign_key "customer_profiles", "accounts"
-  add_foreign_key "customer_profiles", "customers"
   add_foreign_key "receive_payment_links", "accounts"
-  add_foreign_key "reminders", "account_clients"
   add_foreign_key "user_connected_accounts", "users"
 end
