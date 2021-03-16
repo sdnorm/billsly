@@ -7,9 +7,13 @@
     <div class="p-4 bg-white border border-gray-300 rounded-lg lg:p-10">
 
       <div class="sm:flex items-center justify-between mb-3">
-        <h1 class="flex-1 h2">Account</h1>
+        <h1 class="flex-1 h2"><%= t(".title") %></h1>
 
-
+        <% if @accounts.exists? %>
+          <div>
+            <%= link_to t(".create"), new_account_path, class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
 
       <%# Skip display personal accounts to reduce confusion %>
