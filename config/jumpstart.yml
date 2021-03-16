@@ -1,9 +1,9 @@
 --- !ruby/object:Jumpstart::Configuration
 application_name: Billsly
 business_name: Billsly, LLC
-domain: example.com
+domain: billsly.co
 support_email: support@billsly.co
-default_from_email: Jumpstart <support@example.com>
+default_from_email: Billsly <support@billsly.co>
 business_address: ''
 background_job_processor: sidekiq
 email_provider: ''

@@ -49,6 +49,11 @@ class CustomersController < ApplicationController
     redirect_to customers_url, notice: "Customer was successfully destroyed."
   end
 
+  def sp_specific_sign_up_form
+    params.permit(:id)
+    @account = Account.find(params[:id])
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -1,8 +1,5 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  resources :customers
-  resources :reminders
-  resources :client_profiles
   devise_for :clients
   # Jumpstart views
   if Rails.env.development? || Rails.env.test?
@@ -104,12 +101,18 @@ Rails.application.routes.draw do
   match "/404", via: :all, to: "errors#not_found"
   match "/500", via: :all, to: "errors#internal_server_error"
 
+  # link for SP to send a client to sign up
+  get ":id/client-sign-up", to: "customer#new_from_sp", as: :sp_specific_sign_up_form
+
   authenticated :user do
     # client dashboard
     # root to: "dashboard#show", as: :user_root
     root to: "customers#index", as: :user_root
     # client show/detail page
     get '/clients/:id', to: "dashboard#client_detail", as: :client_detail
+    resources :customers
+    resources :reminders
+    resources :client_profiles
   end
 
   # Public marketing homepage
