@@ -40,6 +40,9 @@ class Account < ApplicationRecord
   has_many :users, through: :account_users
   has_many :account_clients, dependent: :destroy
   has_many :clients, through: :account_clients
+  
+  has_many :account_customers, dependent: :destroy
+  has_many :customers, through: :account_customers
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }
