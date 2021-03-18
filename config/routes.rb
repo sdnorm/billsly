@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Administrate
   authenticated :user, lambda { |u| u.admin? } do
     namespace :admin do
+      resources :sp_payment_links
       resources :clients
       if defined?(Sidekiq)
         require "sidekiq/web"
