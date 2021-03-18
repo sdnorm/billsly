@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :masquerade_user!
 
+  def set_account 
+    @account = current_user.accounts.first
+  end
+
   protected
 
   # To add extra fields to Devise registration, add the attribute names to `extra_keys`

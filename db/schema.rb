@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_202256) do
+ActiveRecord::Schema.define(version: 2021_03_18_023321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,15 @@ ActiveRecord::Schema.define(version: 2021_03_16_202256) do
     t.bigint "client_id", null: false
     t.index ["account_id"], name: "index_reminders_on_account_id"
     t.index ["client_id"], name: "index_reminders_on_client_id"
+  end
+
+  create_table "sp_payment_links", force: :cascade do |t|
+    t.bigint "name"
+    t.string "link"
+    t.bigint "account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_sp_payment_links_on_account_id"
   end
 
   create_table "user_connected_accounts", force: :cascade do |t|

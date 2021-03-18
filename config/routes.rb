@@ -107,6 +107,7 @@ Rails.application.routes.draw do
     root to: "clients#index", as: :user_root
     resources :clients
     resources :reminders
+    resources :sp_payment_links
   end
 
   # Public marketing homepage

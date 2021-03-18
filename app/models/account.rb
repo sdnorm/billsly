@@ -42,6 +42,7 @@ class Account < ApplicationRecord
   has_many :clients, through: :account_clients
 
   has_many :client_profiles
+  has_many :sp_payment_links
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }

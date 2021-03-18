@@ -1,0 +1,17 @@
+<div class="flex flex-wrap my-4 lg:px-4">
+  <div class="w-full p-4 lg:w-1/4">
+    <%= render partial: "shared/account_navbar" %>
+  </div>
+  <div class="w-full p-4 lg:w-3/4">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="h3"><%= t("shared.scaffold.edit.title", model: "Sp Payment Link") %></h1>
+        <%= link_to t("cancel"), @sp_payment_link, class: "btn btn-link" %>
+      </div>
+
+      <div class="bg-white rounded shadow p-8">
+        <%= render "form", sp_payment_link: @sp_payment_link %>
+      </div>
+    </div>
+  </div>
+</div>
