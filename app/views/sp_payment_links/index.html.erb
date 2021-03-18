@@ -4,7 +4,7 @@
   </div>
   <div class="w-full p-4 lg:w-3/4">
     <% if @sp_payment_links.any? %>
-      <%= link_to t("shared.scaffold.new.title", model: "Sp Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
+      <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
     <% end %>
 
     <% if @sp_payment_links.any? %>
@@ -45,8 +45,8 @@
       <div class="bg-white rounded shadow flex flex-col items-center justify-between p-8 lg:flex-row">
         <%= image_tag "empty.svg", class: "mb-4 lg:w-1/2" %>
         <div class="flex-1 text-center">
-          <p class="h3 mb-4">Create your first Sp Payment Link</p>
-          <%= link_to t("shared.scaffold.new.title", model: "Sp Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
+          <p class="h3 mb-4">Create your first Payment Link</p>
+          <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
