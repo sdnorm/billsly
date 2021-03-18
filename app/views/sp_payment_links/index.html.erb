@@ -3,52 +3,54 @@
     <%= render partial: "shared/account_navbar" %>
   </div>
   <div class="w-full p-4 lg:w-3/4">
-    <% if @sp_payment_links.any? %>
-      <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
-    <% end %>
-
-    <% if @sp_payment_links.any? %>
-      <div class="bg-white rounded shadow table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="p-3 uppercase text-left text-xs"><%= sortable @sp_payment_links, :name, "Name", class: "text-gray-700" %></th>
-              <th class="p-3 uppercase text-left text-xs"><%= sortable @sp_payment_links, :link, "Link", class: "text-gray-700" %></th>
-              <th class="p-3 uppercase text-left text-xs"><%= sortable @sp_payment_links, :account, "Account", class: "text-gray-700" %></th>
-              <th class="p-3 uppercase text-left text-xs text-gray-700 w-20"><%= t("shared.scaffold.actions") %></th>
-            </tr>
-          </thead>
-
-          <tbody>
-          <% @sp_payment_links.each do |sp_payment_link| %>
-            <tr class="group border-t border-gray-400 hover:bg-gray-100">
-                        <td class="p-3"><%= sp_payment_link.name %></td>
-                        <td class="p-3"><%= sp_payment_link.link %></td>
-                        <td class="p-3"><%= sp_payment_link.account %></td>
-            
-              <td>
-                <%= link_to t("shared.scaffold.view"), sp_payment_link, class: "btn btn-link no-underline" %>
-              </td>
-            </tr>
+    <div class="p-4 bg-white border border-gray-300 rounded-lg lg:p-10">
+      <div class="max-w-3xl mx-auto">
+        <div class="flex justify-between items-center mb-4">
+          <h1 class="h3">Payment Links</h1>
+          <% if @sp_payment_links.any? %>
+            <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
           <% end %>
-          </tbody>
-        </table>
-      </div>
-
-      <% if @pagy.pages > 1 %>
-        <div class="text-center my-6">
-          <%== pagy_nav(@pagy) %>
         </div>
-      <% end %>
+        <% if @sp_payment_links.any? %>
+          <div class="bg-white table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="p-3 uppercase text-left text-xs"><%= sortable @sp_payment_links, :name, "Provider", class: "text-gray-700" %></th>
+                  <th class="p-3 uppercase text-left text-xs"><%= sortable @sp_payment_links, :link, "Link", class: "text-gray-700" %></th>
+                  <th class="p-3 uppercase text-left text-xs text-gray-700 w-20"><%= t("shared.scaffold.actions") %></th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @sp_payment_links.each do |sp_payment_link| %>
+                <tr class="group border-t border-gray-400 hover:bg-gray-100">
+                  <td class="p-3"><%= sp_payment_link.name %></td>
+                  <td class="p-3"><%= sp_payment_link.link %></td>
+                  <td>
+                    <%= link_to "edit", edit_sp_payment_link_path(sp_payment_link), class: "btn btn-link no-underline" %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
 
-    <% else %>
-      <div class="bg-white rounded shadow flex flex-col items-center justify-between p-8 lg:flex-row">
-        <%= image_tag "empty.svg", class: "mb-4 lg:w-1/2" %>
-        <div class="flex-1 text-center">
-          <p class="h3 mb-4">Create your first Payment Link</p>
-          <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
-        </div>
+          <% if @pagy.pages > 1 %>
+            <div class="text-center my-6">
+              <%== pagy_nav(@pagy) %>
+            </div>
+          <% end %>
+
+        <% else %>
+          <div class="bg-white rounded shadow flex flex-col items-center justify-between p-8 lg:flex-row">
+            <%= image_tag "empty.svg", class: "mb-4 lg:w-1/2" %>
+            <div class="flex-1 text-center">
+              <p class="h3 mb-4">Create your first Payment Link</p>
+              <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

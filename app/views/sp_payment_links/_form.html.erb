@@ -2,8 +2,8 @@
   <%= render "shared/error_messages", resource: form.object %>
 
   <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.label "choose a payment provider", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.select(:name, SpPaymentLink.names.keys.map {|key| [key.humanize, key]}, {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md") %>
   </div>
 
   <div class="form-group">
@@ -11,16 +11,11 @@
     <%= form.text_field :link, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :account %>
-    <%= form.text_field :account, class: "form-control" %>
-  </div>
-
   <div class="form-group flex justify-between">
     <%= form.button class: "btn btn-primary" %>
 
     <% if form.object.persisted? %>
-      <%= link_to t("delete"), form.object, class: "btn btn-danger outline", method: :delete, data: { confirm: t("are_you_sure") } %>
+      <%= link_to "Delete", form.object, class: "btn btn-danger outline", method: :delete, data: { confirm: t("are_you_sure") } %>
     <% end %>
   </div>
 <% end %>

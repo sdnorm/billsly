@@ -17,4 +17,10 @@ class SpPaymentLink < ApplicationRecord
 
   belongs_to :account
 
+  enum name: {
+    other: 0,
+    paypal: 1,
+    venmo: 2
+  }
+
 end

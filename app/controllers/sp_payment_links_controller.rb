@@ -30,7 +30,7 @@ class SpPaymentLinksController < ApplicationController
   # POST /sp_payment_links
   def create
     @sp_payment_link = SpPaymentLink.new(sp_payment_link_params)
-
+    @sp_payment_link.account_id = @account.id
     if @sp_payment_link.save
       redirect_to @sp_payment_link, notice: "Sp payment link was successfully created."
     else
