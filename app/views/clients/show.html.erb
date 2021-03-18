@@ -6,22 +6,31 @@
     </div>
 
     <div class="bg-white rounded shadow p-8">
-            <div class="mb-4">
+      <div class="mb-4">
         <h5>First name</h5>
         <%= @client.first_name %>
       </div>
-            <div class="mb-4">
+      <div class="mb-4">
         <h5>Last name</h5>
         <%= @client.last_name %>
       </div>
-            <div class="mb-4">
+      <div class="mb-4">
         <h5>Email</h5>
         <%= @client.email %>
       </div>
-            <div class="mb-4">
+      <div class="mb-4">
         <h5>Phone number</h5>
         <%= @client.phone_number %>
       </div>
-          </div>
+      <div class="mb-4">
+        <h5>Client Profile</h5>
+        <% if @client.client_profile.nil? %>
+          <h3>no profile</h3>
+        <% else %>
+          <div><strong>reminder:</strong> <%= @client.client_profile.reminder_message %></div>
+          <div><strong>payment options:</strong><%= @client.client_profile.payment_options %></div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

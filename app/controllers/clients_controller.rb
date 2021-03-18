@@ -23,6 +23,7 @@ class ClientsController < ApplicationController
 
   # GET /clients/1/edit
   def edit
+    @payment_options = @account.sp_payment_links.pluck(:name, :id)
   end
 
   # POST /clients
@@ -64,6 +65,17 @@ class ClientsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def client_params
-    params.require(:client).permit(:first_name, :last_name, :email, :phone_number)
+    params.require(:client).permit(
+      :first_name, 
+      :last_name, 
+      :email, 
+      :phone_number, 
+      client_profile_attributes: [
+        :id, 
+        :reminder_message,
+        :payment_options,
+        :_destroy
+      ]
+    )
   end
 end

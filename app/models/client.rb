@@ -20,7 +20,8 @@ class Client < ApplicationRecord
   has_many :account_clients, dependent: :destroy
   has_many :accounts, through: :account_clients
 
-  has_many :client_profiles
+  has_one :client_profile
+  accepts_nested_attributes_for :client_profile, reject_if: :all_blank, allow_destroy: true
 
   def full_name
     "#{first_name} #{last_name}"

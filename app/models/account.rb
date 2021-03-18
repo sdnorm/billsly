@@ -2,22 +2,23 @@
 #
 # Table name: accounts
 #
-#  id                 :bigint           not null, primary key
-#  card_exp_month     :string
-#  card_exp_year      :string
-#  card_last4         :string
-#  card_type          :string
-#  domain             :string
-#  extra_billing_info :text
-#  name               :string           not null
-#  personal           :boolean          default(FALSE)
-#  processor          :string
-#  subdomain          :string
-#  trial_ends_at      :datetime
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  owner_id           :bigint
-#  processor_id       :string
+#  id                       :bigint           not null, primary key
+#  card_exp_month           :string
+#  card_exp_year            :string
+#  card_last4               :string
+#  card_type                :string
+#  default_reminder_message :text
+#  domain                   :string
+#  extra_billing_info       :text
+#  name                     :string           not null
+#  personal                 :boolean          default(FALSE)
+#  processor                :string
+#  subdomain                :string
+#  trial_ends_at            :datetime
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  owner_id                 :bigint
+#  processor_id             :string
 #
 # Indexes
 #
@@ -48,6 +49,8 @@ class Account < ApplicationRecord
   scope :impersonal, -> { where(personal: false) }
 
   has_one_attached :avatar
+
+  has_rich_text :default_reminder_message
 
   validates :name, presence: true
   validates :domain, exclusion: {in: RESERVED_DOMAINS, message: :reserved}

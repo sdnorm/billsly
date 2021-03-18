@@ -3,6 +3,7 @@
 # Table name: client_profiles
 #
 #  id               :bigint           not null, primary key
+#  payment_options  :bigint           is an Array
 #  reminder_message :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -23,5 +24,9 @@ class ClientProfile < ApplicationRecord
 
   belongs_to :account
   belongs_to :client
+
+  has_many :sp_payment_links
+
+  has_rich_text :reminder_message
   
 end

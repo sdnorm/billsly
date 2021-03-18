@@ -64,8 +64,54 @@
         <% end %>
 
       <% else %>
-        <div class="p-8 text-center">
+        <%
+=begin%>
+ <div class="p-8 text-center">
           <%= image_tag "empty.svg", class: "w-1/3 mb-4 m-auto" %>
+        </div> 
+<%
+=end%>
+        <h4>Default Reminder Message:</h4>
+        <div class="bg-gray-200 overflow-hidden shadow sm:rounded-lg mt-3">
+          <div class="px-4 py-5 sm:p-6">
+            <!-- Content goes here -->
+            <%= @accounts.first.default_reminder_message %>
+          </div>
+        </div>
+        
+
+        <div data-controller="modal" data-modal-disable-backdrop="true">
+          <button class="btn btn-primary mt-4" data-action="click->modal#open">Edit Default Message</button>
+
+          <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+            <!-- Modal Inner Container -->
+            <div class="fixed top-0 left-0 w-full h-full relative">
+              <!-- Modal Card -->
+              <div class="w-screen h-screen bg-white">
+                <div class="flex flex-wrap justify-center items-center h-screen">
+                  <div class="w-2/3 m-auto">
+                    <h2 class="mb-4">Edit Default Reminder Message</h2>
+                    
+                    <%= form_with(model: @accounts.first) do |form| %>
+                      <%= render "shared/error_messages", resource: form.object %>
+
+                      <div class="form-group">
+                        <%= form.label :default_reminder_message %>
+                        <%= form.rich_text_area :default_reminder_message, class: "form-control" %>
+                      </div>
+                      <div class="form-group flex justify-between">
+                        <%= form.button "Save Default Message", class: "btn btn-primary" %>
+                      </div>
+                    <% end %>
+
+                    <div class="flex justify-end items-center flex-wrap mt-6">
+                      <button class="btn btn-primary" data-action="click->modal#close">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>

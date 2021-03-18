@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_023321) do
+ActiveRecord::Schema.define(version: 2021_03_18_204507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_023321) do
     t.text "extra_billing_info"
     t.string "domain"
     t.string "subdomain"
+    t.text "default_reminder_message"
     t.index ["owner_id"], name: "index_accounts_on_owner_id"
   end
 
@@ -140,6 +141,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_023321) do
     t.text "reminder_message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "payment_options", array: true
     t.index ["account_id"], name: "index_client_profiles_on_account_id"
     t.index ["client_id"], name: "index_client_profiles_on_client_id"
   end
@@ -240,7 +242,9 @@ ActiveRecord::Schema.define(version: 2021_03_18_023321) do
     t.bigint "account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "client_profile_id"
     t.index ["account_id"], name: "index_sp_payment_links_on_account_id"
+    t.index ["client_profile_id"], name: "index_sp_payment_links_on_client_profile_id"
   end
 
   create_table "user_connected_accounts", force: :cascade do |t|

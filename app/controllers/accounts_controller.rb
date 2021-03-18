@@ -1,7 +1,7 @@
 class AccountsController < Accounts::BaseController
   before_action :authenticate_user!
-  before_action :set_account, only: [:show, :edit, :update, :destroy, :switch]
-  before_action :require_account_admin, only: [:edit, :update, :destroy]
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :switch, :edit_reminder_message]
+  before_action :require_account_admin, only: [:edit, :update, :destroy, :edit_reminder_message]
   before_action :prevent_personal_account_deletion, only: [:destroy]
 
   # GET /accounts
@@ -51,7 +51,8 @@ class AccountsController < Accounts::BaseController
   # PATCH/PUT /accounts/1
   def update
     if @account.update(account_params)
-      redirect_to @account, notice: t(".updated")
+      # redirect_to @account, notice: t(".updated")
+      redirect_to accounts_path, notice: t(".updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -92,7 +93,7 @@ class AccountsController < Accounts::BaseController
 
   # Only allow a trusted parameter "white list" through.
   def account_params
-    attributes = [:name, :avatar]
+    attributes = [:name, :avatar, :default_reminder_message]
     attributes << :domain if Jumpstart::Multitenancy.domain?
     attributes << :subdomain if Jumpstart::Multitenancy.subdomain?
     params.require(:account).permit(*attributes)
