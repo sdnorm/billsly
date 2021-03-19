@@ -23,12 +23,12 @@
         <%= @client.phone_number %>
       </div>
       <div class="mb-4">
-        <h5>Client Profile</h5>
-        <% if @client.client_profile.nil? %>
+        <h4>Client Profile</h4>
+        <% if @client.client_profiles.nil? %>
           <h3>no profile</h3>
         <% else %>
-          <div><strong>reminder:</strong> <%= @client.client_profile.reminder_message %></div>
-          <div><strong>payment options:</strong><%= @client.client_profile.payment_options %></div>
+          <div><strong>reminder:</strong> <%= @client.client_profiles.first.reminder_message %></div>
+          <div><strong>payment options:</strong><%= @client.client_profiles.first.payment_options %></div>
         <% end %>
       </div>
     </div>

@@ -3,6 +3,10 @@ class ClientsController < ApplicationController
   before_action :set_account
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
+  def bulk_send_reminders
+    
+  end
+
   # GET /clients
   def index
     @pagy, @clients = pagy(@account.clients.sort_by_params(params[:sort], sort_direction))
@@ -70,7 +74,7 @@ class ClientsController < ApplicationController
       :last_name, 
       :email, 
       :phone_number, 
-      client_profile_attributes: [
+      client_profiles_attributes: [
         :id, 
         :reminder_message,
         :payment_options,

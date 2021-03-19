@@ -18,7 +18,7 @@
 class SpPaymentLink < ApplicationRecord
 
   belongs_to :account
-  belongs_to :client_profiles
+  belongs_to :client_profiles, optional: true
 
   enum name: {
     other: 0,

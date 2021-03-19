@@ -22,14 +22,14 @@
   </div>
 
   <div class="form-group">
-    <%= form.fields_for :client_profile do |cp| %>
+    <%= form.fields_for :client_profiles do |cp| %>
       <%= cp.label :reminder_message %>
       <%= cp.rich_text_area :reminder_message, class: "form-control" %>
     <% end %>
   </div>
 
   <div class="form-group">
-    <%= form.fields_for :client_profile do |cp| %>
+    <%= form.fields_for :client_profiles do |cp| %>
       <%= cp.label :payment_options %>
       <%= cp.select :payment_options, options_for_select(@payment_options), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
     <% end %>
