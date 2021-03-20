@@ -1,7 +1,7 @@
-class TestMailer < ApplicationMailer
+class WorkCompleteMailer < ApplicationMailer
   default from: "hello@billsly.co"
 
-  def send_tester_balls
+  def test
     mail(to: "spencer@billsly.co",
     subject: "Tester Balls Emails")
   end

@@ -20,7 +20,7 @@ class Reminder < ApplicationRecord
   # self.ignored_columns = ["account_client_id"]
 
   def self.test_email
-    TestMailer.send_tester_balls().deliver
+    WorkCompleteMailer.test().deliver
   end
   
 end
