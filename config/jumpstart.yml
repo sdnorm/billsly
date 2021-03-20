@@ -6,7 +6,7 @@ support_email: support@billsly.co
 default_from_email: Billsly <support@billsly.co>
 business_address: ''
 background_job_processor: sidekiq
-email_provider: mailjet
+email_provider: sendgrid
 personal_accounts: true
 livereload: false
 solargraph: true

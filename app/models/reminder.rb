@@ -18,5 +18,9 @@ class Reminder < ApplicationRecord
 
   # belongs_to :account_client
   # self.ignored_columns = ["account_client_id"]
+
+  def self.test_email
+    TestMailer.send_tester_balls().deliver
+  end
   
 end

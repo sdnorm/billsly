@@ -4,6 +4,7 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def bulk_send_reminders
+    params.permit(:client_ids)
     
   end
 
