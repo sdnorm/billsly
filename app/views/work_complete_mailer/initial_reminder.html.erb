@@ -6,7 +6,7 @@
 
 <ul>
   <% @account.sp_payment_links.each do |link| %>
-    <%= link.name %>: <%= link_to link.link %>
+    <%= link_to link.name, "link.link" %>
   <% end %>
 </ul>
 
