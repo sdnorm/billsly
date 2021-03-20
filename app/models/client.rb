@@ -39,4 +39,8 @@ class Client < ApplicationRecord
     "#{city}, #{state} #{zip_code}"
   end
 
+  def send_initial_reminder(account, service_provider)
+    WorkCompleteMailer.with(client: @client, account: account, service_provider: service_provider).initial_reminder.deliver_later
+  end
+
 end

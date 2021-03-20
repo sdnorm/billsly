@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:show, :edit, :update, :destroy, :initial_reminder]
 
   def bulk_send_reminders
     params.permit(:client_ids)
@@ -19,6 +19,11 @@ class ClientsController < ApplicationController
 
   # GET /clients/1
   def show
+  end
+
+  def initial_reminder
+    @client.send_initial_reminder(@account, current_user)
+    redirect_to clients_url, notice: "Reminder sent to #{@client.first_name}!"
   end
 
   # GET /clients/new

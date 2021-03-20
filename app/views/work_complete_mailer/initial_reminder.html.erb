@@ -1,0 +1,13 @@
+<h4>Hello <%= @client.first_name %>!
+
+<p><%= @service_provider.first_name %> has completed the work.</p>
+
+<p>Please pay at one of the following links.</p>
+
+<ul>
+  <% @account.sp_payment_links.each do |link| %>
+    <%= link.name %>: <%= link_to link.link %>
+  <% end %>
+</ul>
+
+<h2>Thanks!</h2>

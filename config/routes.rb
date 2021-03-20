@@ -111,6 +111,7 @@ Rails.application.routes.draw do
     resources :clients
     resources :reminders
     resources :sp_payment_links
+    get 'clients/:id/send-initial-reminder', to: 'clients#initial_reminder', as: :initial_reminder
   end
 
   # Public marketing homepage
