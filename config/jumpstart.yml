@@ -2,7 +2,7 @@
 application_name: Billsly
 business_name: Billsly, LLC
 domain: billsly.co
-support_email: support@billsly.co
+support_email: hello@billsly.co
 default_from_email: Billsly hello@billsly.co>
 business_address: ''
 background_job_processor: sidekiq

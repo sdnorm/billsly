@@ -48,7 +48,7 @@ module Jumpstart
       self.business_name ||= "Jumpstart Company, LLC"
       self.domain ||= "example.com"
       self.support_email ||= "support@example.com"
-      self.default_from_email ||= "Jumpstart <support@example.com>"
+      self.default_from_email ||= "Jumpstart <hello@example.com>"
       self.job_processor ||= "async"
 
       self.personal_accounts = true if personal_accounts.nil?
