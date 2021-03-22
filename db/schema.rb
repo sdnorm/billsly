@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_204507) do
+ActiveRecord::Schema.define(version: 2021_03_22_172929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,8 @@ ActiveRecord::Schema.define(version: 2021_03_18_204507) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "account_id", null: false
     t.bigint "client_id", null: false
+    t.boolean "read"
+    t.boolean "opened", default: false
     t.index ["account_id"], name: "index_reminders_on_account_id"
     t.index ["client_id"], name: "index_reminders_on_client_id"
   end

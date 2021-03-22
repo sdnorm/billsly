@@ -4,6 +4,8 @@
 #
 #  id         :bigint           not null, primary key
 #  message    :text
+#  opened     :boolean          default(FALSE)
+#  read       :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :bigint           not null
