@@ -22,7 +22,7 @@ class ClientsController < ApplicationController
   end
 
   def initial_reminder
-    @client.send_initial_reminder(@account, current_user)
+    @client.send_initial_reminder(current_account, current_user)
     redirect_to clients_url, notice: "Reminder sent to #{@client.first_name}!"
   end
 

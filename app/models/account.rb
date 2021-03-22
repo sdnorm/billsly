@@ -44,6 +44,7 @@ class Account < ApplicationRecord
 
   has_many :client_profiles
   has_many :sp_payment_links
+  has_many :reminders
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }

@@ -20,6 +20,8 @@ class Client < ApplicationRecord
   has_many :account_clients, dependent: :destroy
   has_many :accounts, through: :account_clients
 
+  has_many :reminders
+
   has_many :client_profiles
   accepts_nested_attributes_for :client_profiles, reject_if: :all_blank, allow_destroy: true
 
@@ -40,7 +42,8 @@ class Client < ApplicationRecord
   end
 
   def send_initial_reminder(account, service_provider)
-    WorkCompleteMailer.with(client: self, account: account, service_provider: service_provider).initial_reminder.deliver_now
+    WorkCompleteMailer.with(client: self, account: account, service_provider: service_provider).initial_reminder.deliver_later
+    Reminder.create(message: account.default_reminder_message, client_id: self.id, account_id: account.id)
   end
 
 end

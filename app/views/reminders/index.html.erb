@@ -13,17 +13,15 @@
         <thead>
           <tr>
             <th class="p-3 uppercase text-left text-xs"><%= sortable @reminders, :message, "Message", class: "text-gray-700" %></th>
-            <th class="p-3 uppercase text-left text-xs"><%= sortable @reminders, :account_client_id, "Account client", class: "text-gray-700" %></th>
-            <th class="p-3 uppercase text-left text-xs text-gray-700 w-20"><%= t("shared.scaffold.actions") %></th>
+            <th class="p-3 uppercase text-left text-xs"><%= sortable @reminders, :client_id, "Account client", class: "text-gray-700" %></th>
           </tr>
         </thead>
 
         <tbody>
         <% @reminders.each do |reminder| %>
           <tr class="group border-t border-gray-400 hover:bg-gray-100">
-                      <td class="p-3"><%= reminder.message %></td>
-                      <td class="p-3"><%= reminder.account_client_id %></td>
-          
+            <td class="p-3"><%= reminder.message %></td>
+            <td class="p-3"><%= reminder.client.full_name %></td>
             <td>
               <%= link_to t("shared.scaffold.view"), reminder, class: "btn btn-link no-underline" %>
             </td>

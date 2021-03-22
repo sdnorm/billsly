@@ -1,10 +1,10 @@
 class WorkCompleteMailer < ApplicationMailer
-  default from: "hello@billsly.co"
+  # default from: "hello@billsly.co"
 
-  def test
-    mail(to: "justin@billsly.co",
-    subject: "Tester Balls Emails")
-  end
+  # def test
+  #   mail(to: "justin@billsly.co",
+  #   subject: "Tester Balls Emails")
+  # end
 
   def initial_reminder
     @client = params[:client]

@@ -3,12 +3,12 @@ application_name: Billsly
 business_name: Billsly, LLC
 domain: billsly.co
 support_email: support@billsly.co
-default_from_email: Billsly <support@billsly.co>
+default_from_email: Billsly hello@billsly.co>
 business_address: ''
 background_job_processor: sidekiq
 email_provider: sendgrid
 personal_accounts: true
-livereload: false
+livereload: true
 solargraph: true
 register_with_account: false
 integrations:
