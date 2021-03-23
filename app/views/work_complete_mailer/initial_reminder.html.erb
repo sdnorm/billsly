@@ -1,6 +1,6 @@
 <h4>Hello <%= @client.first_name %>!
 
-<p><%= @service_provider.first_name %> has completed the work.</p>
+<p><%= @client.client_profiles.first.reminder_message %></p>
 
 <p>Please pay at one of the following links.</p>
 
