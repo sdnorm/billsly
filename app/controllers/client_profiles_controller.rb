@@ -1,5 +1,6 @@
 class ClientProfilesController < ApplicationController
   before_action :set_client_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_client
 
   # GET /client_profiles
   def index
@@ -16,7 +17,7 @@ class ClientProfilesController < ApplicationController
 
   # GET /client_profiles/new
   def new
-    @client_profile = ClientProfile.new
+    @client_profile = @client.client_profiles.build
   end
 
   # GET /client_profiles/1/edit
@@ -25,7 +26,7 @@ class ClientProfilesController < ApplicationController
 
   # POST /client_profiles
   def create
-    @client_profile = ClientProfile.new(client_profile_params)
+    @client_profile = @client.client_profiles.build(client_profile_params)
 
     if @client_profile.save
       redirect_to @client_profile, notice: "Client profile was successfully created."
@@ -58,6 +59,11 @@ class ClientProfilesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def client_profile_params
-    params.require(:client_profile).permit(:client_id, :reminder_message)
+    params.require(:client_profile).permit(:client_id, :reminder_message. :payment_options)
   end
+
+  def set_client
+    @client = Client.find(params[:client_id])
+  end
+
 end

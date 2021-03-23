@@ -3,6 +3,7 @@
 # Table name: client_profiles
 #
 #  id               :bigint           not null, primary key
+#  payment_option   :bigint
 #  payment_options  :bigint           is an Array
 #  reminder_message :text
 #  created_at       :datetime         not null

@@ -30,8 +30,8 @@
 
   <div class="form-group">
     <%= form.fields_for :client_profiles do |cp| %>
-      <%= cp.label :payment_options %>
-      <%= cp.select :payment_options, options_for_select(@payment_options), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+      <%= cp.label :payment_option %>
+      <%= cp.select :payment_option, options_for_select(@payment_options, [client.client_profiles.first.payment_option]), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
     <% end %>
   </div>
 

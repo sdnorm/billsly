@@ -24,9 +24,9 @@
             </td>
             <td class="p-3">
             <% if reminder.opened %>
-              <i class="far fa-envelope-open"></i>
+              <i class="far fa-envelope-open" data-controller="tooltip" data-tippy-content="This client has opened the email reminder!" data-tippy-delay="0" data-tippy-arrow="true" data-tippy-size="regular" data-tippy-animation="fade"></i>
             <% else %>
-              <i class="far fa-envelope"></i>
+              <i class="far fa-envelope" data-controller="tooltip" data-tippy-content="This email has not been opened yet." data-tippy-delay="0" data-tippy-arrow="true" data-tippy-size="regular" data-tippy-animation="fade"></i>
             <% end %>  
             </td>
           </tr>

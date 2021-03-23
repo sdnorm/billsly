@@ -27,8 +27,26 @@
         <% if @client.client_profiles.nil? %>
           <h3>no profile</h3>
         <% else %>
-          <div><strong>reminder:</strong> <%= @client.client_profiles.first.reminder_message %></div>
-          <div><strong>payment options:</strong><%= @client.client_profiles.first.payment_options %></div>
+          <strong>Reminder Message:</strong>
+          <% if current_account.default_reminder_message.blank? && @client.client_profiles.last.reminder_message.blank? %>
+            <div><i><%= link_to "Set your default message here.", accounts_path %></i></div>
+            <div>Or edit this client profile to add a specific reminder message.</div>
+            <div><i>ie. "Hey we've completed your work! Please pay $xx at a link below."</i></div>
+          <% elsif @client.client_profiles.first.reminder_message.blank? %>
+            <h5>Using account default reminder message:</h5>
+            <div><%= current_account.default_reminder_message %></div>
+          <% else %>
+            <h5>Using client specific reminder message:</h5>
+            <div><%= @client.client_profiles.first.reminder_message %></div>
+          <% end %>
+          <strong>Payment Options:</strong>
+          <% if current_account.sp_payment_links == [] %>
+            <h5><%= link_to "Set up some payment links here!", sp_payment_links_path %></h5>
+          <% elsif @client.client_profiles.first.payment_option.blank?%>
+            <h5>No specific payment link applied yet. We will send all links you have saved. </h5>
+          <% else %>
+            <div><strong></strong><%= @account.sp_payment_links.find(@client.client_profiles.first.payment_option).name %></div>
+          <% end %>  
         <% end %>
       </div>
     </div>

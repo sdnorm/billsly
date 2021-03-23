@@ -108,7 +108,9 @@ Rails.application.routes.draw do
   authenticated :user do
     # client dashboard
     root to: "clients#index", as: :user_root
-    resources :clients
+    resources :clients do 
+      resources :client_profiles
+    end
     resources :reminders
     resources :sp_payment_links
     get 'clients/:id/send-initial-reminder', to: 'clients#initial_reminder', as: :initial_reminder
