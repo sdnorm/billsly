@@ -28,12 +28,6 @@ class ClientsController < ApplicationController
 
   def bulk_reminder_send
     params.require(:client_ids)
-    puts " "
-    puts "clients"
-    puts " "
-    puts params[:client_ids]
-    puts " "
-    puts " ---------------- "
     clients = params[:client_ids]
     clients.each do |c|
       Client.find(c).send_initial_reminder(current_account, current_user)
@@ -58,8 +52,8 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      AccountClient.create(client_id: @client.id, account_id: current_account.id)
-      client_profile = ClientProfile.create(client_id: @client.id)
+      AccountClient.create!(client_id: @client.id, account_id: current_account.id)
+      ClientProfile.create!(client_id: @client.id, account_id: current_account.id)
       redirect_to clients_path, notice: "Client was successfully created."
     else
       render :new, status: :unprocessable_entity

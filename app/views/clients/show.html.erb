@@ -32,7 +32,7 @@
             <div><i><%= link_to "Set your default message here.", accounts_path %></i></div>
             <div>Or edit this client profile to add a specific reminder message.</div>
             <div><i>ie. "Hey we've completed your work! Please pay $xx at a link below."</i></div>
-          <% elsif @client.client_profiles.first.reminder_message.blank? %>
+          <% el   sif @client.client_profiles.first.reminder_message.blank? %>
             <h5>Using account default reminder message:</h5>
             <div><%= current_account.default_reminder_message %></div>
           <% else %>

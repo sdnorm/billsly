@@ -14,6 +14,7 @@ class SpPaymentLinkDashboard < Administrate::BaseDashboard
     link: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    client_profile_id: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -37,6 +38,7 @@ class SpPaymentLinkDashboard < Administrate::BaseDashboard
   link
   created_at
   updated_at
+  client_profile_id
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -46,6 +48,7 @@ class SpPaymentLinkDashboard < Administrate::BaseDashboard
   account
   name
   link
+  client_profile_id
   ].freeze
 
   # COLLECTION_FILTERS

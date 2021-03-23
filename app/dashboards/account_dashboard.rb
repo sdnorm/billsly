@@ -29,7 +29,8 @@ class AccountDashboard < Administrate::BaseDashboard
     extra_billing_info: Field::Text,
     plan: Field::String,
     quantity: Field::Number,
-    card_token: Field::String
+    card_token: Field::String,
+    sp_payment_link: Field::HasMany
   }.freeze
 
   # COLLECTION_ATTRIBUTES

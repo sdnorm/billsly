@@ -8,13 +8,13 @@ class AnnouncementDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    description: Field::RichText,
     id: Field::Number,
-    kind: Field::Select.with_options(collection: Announcement::TYPES),
+    kind: Field::String,
     title: Field::String,
-    description: Field::Text,
     published_at: Field::DateTime,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
+    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -22,34 +22,46 @@ class AnnouncementDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :id,
-    :kind,
-    :title,
-    :published_at
+  COLLECTION_ATTRIBUTES = %i[
+  description
+  id
+  kind
+  title
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :kind,
-    :title,
-    :description,
-    :published_at,
-    :created_at,
-    :updated_at
+  SHOW_PAGE_ATTRIBUTES = %i[
+  description
+  id
+  kind
+  title
+  published_at
+  created_at
+  updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :kind,
-    :title,
-    :description,
-    :published_at
+  FORM_ATTRIBUTES = %i[
+  description
+  kind
+  title
+  published_at
   ].freeze
+
+  # COLLECTION_FILTERS
+  # a hash that defines filters that can be used while searching via the search
+  # field of the dashboard.
+  #
+  # For example to add an option to search for open resources by typing "open:"
+  # in the search field:
+  #
+  #   COLLECTION_FILTERS = {
+  #     open: ->(resources) { resources.where(open: true) }
+  #   }.freeze
+  COLLECTION_FILTERS = {}.freeze
 
   # Overwrite this method to customize how announcements are displayed
   # across all pages of the admin dashboard.

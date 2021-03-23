@@ -21,11 +21,11 @@ class Reminder < ApplicationRecord
   # belongs_to :account_client
   # self.ignored_columns = ["account_client_id"]
 
-  belongs_to :account
-  belongs_to :client
+  # belongs_to :account
+  # belongs_to :client
 
-  def self.test_email
-    WorkCompleteMailer.test().deliver
-  end
+  # def self.test_email
+  #   WorkCompleteMailer.test().deliver
+  # end
   
 end
