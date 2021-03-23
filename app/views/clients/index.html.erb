@@ -1,5 +1,6 @@
 <div class="container mx-auto my-8 sm:px-2 md:px-4">
   <div class="flex justify-between items-center mb-4">
+
     <h1 class="h3">Clients</h1>
 
     <% if @clients.any? %>
@@ -8,6 +9,7 @@
   </div>
 
   <% if @clients.any? %>
+  <%= form_with url: bulk_reminder_send_path, method: :post do |form| %>
     <div class="flex flex-col">
       <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -16,6 +18,7 @@
               <tr>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                   <%= sortable @clients, :last_name, "Name", class: "text-gray-700" %>
+                  <%= form.submit "Bulk Send", class: "btn btn-small btn-tertiary mr-2 ml-3" %>
                 </th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                   Action
@@ -27,7 +30,7 @@
                 <tr class="hover:bg-gray-100">
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
-                      <input class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" id="remember_me" name="remember_me" type="checkbox">
+                      <input type="checkbox" name="client_ids[]" value="<%= client.id %>" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
                       <div class="ml-4">
                         <%= link_to client_path(client) do %>
                           <div class="text-sm leading-5 font-medium text-gray-900"><%= client.full_name %></div>
@@ -44,7 +47,7 @@
                   </td>
                 </tr>
               <% end %>
-              
+            <% end %>
             </tbody>
           </table>
         </div>

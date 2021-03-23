@@ -26,10 +26,25 @@ class ClientsController < ApplicationController
     redirect_to clients_url, notice: "Reminder sent to #{@client.first_name}!"
   end
 
+  def bulk_reminder_send
+    params.require(:client_ids)
+    puts " "
+    puts "clients"
+    puts " "
+    puts params[:client_ids]
+    puts " "
+    puts " ---------------- "
+    clients = params[:client_ids]
+    clients.each do |c|
+      Client.find(c).send_initial_reminder(current_account, current_user)
+    end
+    redirect_to clients_url, alert: "Reminders sent!"
+  end
+
   # GET /clients/new
   def new
-    # @client = Client.new
-    @client.client_profiles.build
+    @client = Client.new
+    # @client.client_profiles.build
   end
 
   # GET /clients/1/edit
@@ -41,11 +56,10 @@ class ClientsController < ApplicationController
 
   # POST /clients
   def create
-    # @client = Client.new(client_params)
-    @client.client_profiles.build(client_params)
+    @client = Client.new(client_params)
     if @client.save
       AccountClient.create(client_id: @client.id, account_id: current_account.id)
-      # client_profile = ClientProfile.create(client_id: @client.id)
+      client_profile = ClientProfile.create(client_id: @client.id)
       redirect_to clients_path, notice: "Client was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -70,7 +84,7 @@ class ClientsController < ApplicationController
   private
 
   def set_account 
-    @account = current_user.accounts.first
+    @account = current_account
   end
 
   # Use callbacks to share common setup or constraints between actions.

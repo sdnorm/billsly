@@ -16,5 +16,8 @@ application.register('popover', Popover)
 application.register('toggle', Toggle)
 application.register('slideover', Slideover)
 
+import { Alert } from "tailwindcss-stimulus-components"
+application.register('alert', Alert)
+
 import Flatpickr from 'stimulus-flatpickr'
 application.register('flatpickr', Flatpickr)
