@@ -1,7 +1,7 @@
 <div class="container mx-auto my-8 px-4">
   <div class="max-w-3xl mx-auto">
     <div class="flex justify-between items-center mb-4">
-      <h1 class="h3"><%= link_to "Clients", clients_path %> > Client #<%= @client.id %></h1>
+      <h1 class="h3"><%= link_to "Clients", clients_path %> > <%= @client.full_name %></h1>
       <%= link_to t("edit"), edit_client_path(@client), class: "btn btn-link" %>
     </div>
 

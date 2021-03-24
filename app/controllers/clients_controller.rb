@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account
-  before_action :set_client, only: [:show, :edit, :update, :destroy, :initial_reminder]
+  before_action :set_client, only: [:show, :edit, :update, :destroy, :initial_reminder, :message_index_update]
 
   def bulk_send_reminders
     params.permit(:client_ids)
@@ -66,6 +66,14 @@ class ClientsController < ApplicationController
       redirect_to @client, notice: "Client was successfully updated."
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def message_index_update
+    if @client.update(client_params)
+      redirect_to clients_path, notice: "Message to #{@client.first_name} has been updated!"
+    else
+      render clients_path, status: :unprocessable_entity
     end
   end
 
