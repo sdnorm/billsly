@@ -25,6 +25,20 @@ class Client < ApplicationRecord
   has_many :client_profiles, dependent: :destroy
   accepts_nested_attributes_for :client_profiles, reject_if: :all_blank, allow_destroy: true
 
+  include PgSearch::Model
+  pg_search_scope :general_client_search, 
+  against: [
+    :first_name, 
+    :last_name, 
+    :email, 
+    :address1
+  ], 
+  using: {
+    tsearch: {prefix: true},
+    dmetaphone: {},
+    trigram: {}
+  }
+
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -10,8 +10,11 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @pagy, @clients = pagy(@account.clients.sort_by_params(params[:sort], sort_direction))
-
+    if params[:query].present?
+      @pagy, @clients = pagy(@account.clients.general_client_search(params[:query]).sort_by_params(params[:sort], sort_direction))
+    else
+      @pagy, @clients = pagy(@account.clients.sort_by_params(params[:sort], sort_direction))
+    end
     # We explicitly load the records to avoid triggering multiple DB calls in the views when checking if records exist and iterating over them.
     # Calling @clients.any? in the view will use the loaded records to check existence instead of making an extra DB call.
     @clients.load
