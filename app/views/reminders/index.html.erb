@@ -16,9 +16,9 @@
         <tbody>
         <% @reminders.each do |reminder| %>
           <tr class="group border-t border-gray-400 hover:bg-gray-100">
-            <td class="p-3"><%= reminder.message %></td>
+            <td class="p-3"><%= reminder.message.html_safe %></td>
             <td class="p-3">
-              <%= link_to client_path(reminder.client) do %>
+              <%= link_to client_path(reminder.client_id) do %>
                 <%= reminder.client.full_name %>
               <% end %>
             </td>

@@ -57,7 +57,11 @@ class Client < ApplicationRecord
 
   def send_initial_reminder(account, service_provider)
     WorkCompleteMailer.with(client: self, account: account, service_provider: service_provider).initial_reminder.deliver_later
-    Reminder.create(message: account.default_reminder_message, client_id: self.id, account_id: account.id)
+    if self.client_profiles.first.reminder_message.blank?
+      Reminder.create(message: account.default_reminder_message, client_id: self.id, account_id: account.id)
+    else 
+      Reminder.create(message: self.client_profiles.first.reminder_message, client_id: self.id, account_id: account.id)
+    end
   end
 
   def last_reminder
