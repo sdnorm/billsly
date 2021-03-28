@@ -2,14 +2,15 @@
 #
 # Table name: client_profiles
 #
-#  id               :bigint           not null, primary key
-#  payment_option   :bigint
-#  payment_options  :bigint           is an Array
-#  reminder_message :text
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  account_id       :bigint           not null
-#  client_id        :bigint           not null
+#  id                    :bigint           not null, primary key
+#  last_reminder_message :text
+#  payment_option        :bigint
+#  payment_options       :bigint           is an Array
+#  reminder_message      :text
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  account_id            :bigint           not null
+#  client_id             :bigint           not null
 #
 # Indexes
 #

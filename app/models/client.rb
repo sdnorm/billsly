@@ -68,4 +68,14 @@ class Client < ApplicationRecord
     self.reminders.last
   end
 
+  def set_last_reminder_message
+    client_profile = self.client_profiles.first
+    client_profile.update(last_reminder_message: client_profile.reminder_message)
+  end
+
+  def clear_out_reminder_message
+    client_profile = self.client_profiles.first 
+    client_profile.update(reminder_message: nil)
+  end
+
 end

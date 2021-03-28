@@ -28,14 +28,19 @@
           <h3>no profile</h3>
         <% else %>
           <strong>Reminder Message:</strong>
+          
           <% if current_account.default_reminder_message.blank? && @client.client_profiles.last.reminder_message.blank? %>
             <div><i><%= link_to "Set your default message here.", accounts_path %></i></div>
             <div>Or edit this client profile to add a specific reminder message.</div>
             <div><i>ie. "Hey we've completed your work! Please pay $xx at a link below."</i></div>
           <% elsif @client.client_profiles.first.reminder_message.blank? %>
+            <% unless @client.client_profiles.first.last_reminder_message.blank? %>
+              <%= link_to "Go back to previous client specific message?", revert_to_last_specific_message_path(@client), class: "btn btn-small btn-secondary outline mx-2" %>
+            <% end %>
             <h5>Using account default reminder message:</h5>
             <div><%= current_account.default_reminder_message %></div>
           <% else %>
+            <%= link_to "Revert to your account default message", revert_to_account_default_message_path(@client), class: "btn btn-small btn-danger outline mx-2" %>
             <h5>Using client specific reminder message:</h5>
             <div><%= @client.client_profiles.first.reminder_message %></div>
           <% end %>

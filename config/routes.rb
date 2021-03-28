@@ -117,6 +117,8 @@ Rails.application.routes.draw do
     get 'clients/:id/send-initial-reminder', to: 'clients#initial_reminder', as: :initial_reminder
     post '/bulk_reminder_send', to: 'clients#bulk_reminder_send', as: :bulk_reminder_send
     patch 'clients/:id/client-message-index-update', to: 'clients#message_index_update', as: :message_index_update
+    get 'clients/:id/revert_to_account_default_message', to: 'clients#revert_to_account_default_message', as: :revert_to_account_default_message
+    get 'clients/:id/revert_to_last_specific_message', to: 'clients#revert_to_last_specific_message', as: :revert_to_last_specific_message
   end
 
   # Public marketing homepage

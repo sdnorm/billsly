@@ -1,7 +1,10 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account
-  before_action :set_client, only: [:show, :edit, :update, :destroy, :initial_reminder, :message_index_update]
+  before_action :set_client, only: [
+    :show, :edit, :update, :destroy, :initial_reminder, 
+    :message_index_update, :revert_to_account_default_message, :revert_to_last_specific_message
+  ]
 
   def bulk_send_reminders
     params.permit(:client_ids)
@@ -36,6 +39,17 @@ class ClientsController < ApplicationController
       Client.find(c).send_initial_reminder(current_account, current_user)
     end
     redirect_to clients_url, alert: "Reminders sent!"
+  end
+
+  def revert_to_account_default_message
+    @client.set_last_reminder_message
+    @client.clear_out_reminder_message
+    redirect_to client_url(@client), alert: "Reminder message set to your account default for #{@client.full_name}!"
+  end
+
+  def revert_to_last_specific_message
+    @client.client_profiles.first.update(reminder_message: @client.client_profiles.first.last_reminder_message)
+    redirect_to client_url(@client), alert: "Reminder message set to the previous specific message for #{@client.full_name}!"
   end
 
   # GET /clients/new
