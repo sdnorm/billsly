@@ -1,9 +1,14 @@
 class RemindersController < ApplicationController
   before_action :set_reminder, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_account
+  def set_account 
+    @account = current_account
+  end
 
   # GET /reminders
   def index
-    @pagy, @reminders = pagy(Reminder.sort_by_params(params[:sort], sort_direction))
+    @pagy, @reminders = pagy(@account.reminders.sort_by_params(params[:sort], sort_direction))
 
     # We explicitly load the records to avoid triggering multiple DB calls in the views when checking if records exist and iterating over them.
     # Calling @reminders.any? in the view will use the loaded records to check existence instead of making an extra DB call.
