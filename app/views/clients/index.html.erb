@@ -17,14 +17,10 @@
           </button>
         </div>
       <% end %>
-      <% if @clients.any? %>
-        <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
-      <% end %>
+      <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
     </div>
     <div class="md:hidden">
-      <% if @clients.any? %>
-        <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
-      <% end %>
+      <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
     </div>
   </div>
 
@@ -158,13 +154,12 @@
         </tr>
       </thead>
       <tbody class="bg-white">
-        <tr class="hover:bg-gray-100">
+        <tr class="hover:bg-gray-100" data-controller="tooltip" data-tippy-content="This is an example client. The reminder will be sent to your email." data-tippy-delay="0" data-tippy-arrow="true" data-tippy-size="regular" data-tippy-animation="fade">
           <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
             <div class="flex items-center">
-              <input class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" id="remember_me" name="remember_me" type="checkbox">
               <div class="ml-4">
-                <div class="text-sm leading-5 font-medium text-gray-900">Test Client</div>
-                <div class="text-sm leading-5 text-gray-500">test@client.com</div>
+                <div class="text-sm leading-5 font-medium text-gray-900"><%= current_user.name %></div>
+                <div class="text-sm leading-5 text-gray-500"><%= current_user.email %></div>
               </div>
             </div>
           </td>
@@ -173,18 +168,11 @@
               Send Reminder
             </button>
             <div class="text-xs leading-5 text-gray-500">
-              Last sent <%= Date.today.strftime("%a %b %e") %>
+              Date of last send reminder goes here
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="bg-white rounded shadow flex flex-col items-center justify-between p-8 lg:flex-row">
-      <%= image_tag "empty.svg", class: "mb-4 lg:w-1/2" %>
-      <div class="flex-1 text-center">
-        <p class="h3 mb-4">Create your first Client</p>
-        <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
-      </div>
-    </div>
   <% end %>
 </div>
