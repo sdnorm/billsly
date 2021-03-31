@@ -13,3 +13,5 @@ solargraph: true
 register_with_account: false
 integrations:
 - honeybadger
+payment_processors:
+- stripe
