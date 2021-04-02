@@ -123,6 +123,9 @@ Rails.application.routes.draw do
     get 'clients/:id/revert_to_last_specific_message', to: 'clients#revert_to_last_specific_message', as: :revert_to_last_specific_message
   end
 
+  get '/client_sign_up/:id/new', to: 'client_sign_up#index', as: :new_client_sign_up_link
+  post '/client_sign_up/:id/new', to: 'client_sign_up#create', as: :client_sign_up_create
+
   # Public marketing homepage
   root to: "static#index"
 end
