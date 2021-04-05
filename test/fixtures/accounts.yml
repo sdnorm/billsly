@@ -13,6 +13,7 @@
 #  name                     :string           not null
 #  personal                 :boolean          default(FALSE)
 #  processor                :string
+#  slug                     :string
 #  subdomain                :string
 #  trial_ends_at            :datetime
 #  created_at               :datetime         not null
@@ -23,6 +24,7 @@
 # Indexes
 #
 #  index_accounts_on_owner_id  (owner_id)
+#  index_accounts_on_slug      (slug) UNIQUE
 #
 # Foreign Keys
 #

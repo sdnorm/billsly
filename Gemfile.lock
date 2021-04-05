@@ -168,6 +168,8 @@ GEM
       ffi (>= 1.0.0)
       rake
     formatador (0.2.5)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     guard (2.16.2)
@@ -500,6 +502,7 @@ DEPENDENCIES
   devise-i18n (~> 1.9)
   devise_masquerade!
   faker!
+  friendly_id (~> 5.4.0)
   guard
   guard-livereload (~> 2.5)
   honeybadger

@@ -30,7 +30,7 @@ class ClientSignUpController < ApplicationController
   end
 
   def set_account
-    @account = Account.find(params[:id])
+    @account = Account.friendly.find(params[:id])
   end
 
 end
