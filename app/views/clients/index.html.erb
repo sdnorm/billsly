@@ -1,5 +1,5 @@
 <div class="container mx-auto mb-8 mt-4 sm:px-2 md:px-4">
-  <div class="flex justify-between items-center mb-4">
+  <div class="hidden md:flex justify-between items-center mb-4">
     <h1 class="h3">Clients</h1>
     <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0 px-1">
       <%= form_with url: clients_path, method: :get do |form| %>
@@ -17,7 +17,10 @@
           </button>
         </div>
       <% end %>
-      <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
+      <%= link_to new_client_path, class: "btn btn-gray" do %>
+        <span class="mr-1"><i class="fas fa-plus"></i></span>
+        Client
+      <% end %>
     </div>
     <div class="md:hidden">
       <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
@@ -26,7 +29,7 @@
 
   <div class="md:hidden max-w-md mx-auto">
     <div class="flex justify-around items-center mb-4">
-      <div class="mt-1 flex rounded-md shadow-sm">
+      <div class="flex rounded-md shadow-sm" style="margin-right: 3px;">
         <div class="relative flex items-stretch flex-grow focus-within:z-10">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <!-- Heroicon name: solid/users -->
@@ -41,12 +44,16 @@
           <%= render_svg "icons/search", styles: "fill-current text-color-black icon-sm", title: "search" %>
         </button>
       </div>
+      <%= link_to new_client_path, class: "btn btn-gray-sm" do %>
+        <span class="mr-1"><i class="fas fa-plus"></i></span>
+        Client
+      <% end %>
     </div>
   </div>
 
   <% if @clients.any? %>
     <div class="flex flex-col">
-      <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="my-2 overflow-x-auto">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
           <table class="min-w-full">
             <thead>
@@ -54,15 +61,14 @@
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                   <%= sortable @clients, :last_name, "Name", class: "text-gray-700" %>
                 </th>
-                <%
-=begin%>
- <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Message
-                </th> 
-<%
-=end%>
+                <th class="hide-on-table-mobile px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Email
+                </th>
+                <th class="hide-on-table-mobile px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Address
+                </th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Action
+                  <div class="flex justify-end">Action</div>
                 </th>
               </tr>
             </thead>
@@ -71,59 +77,28 @@
                 <tr class="hover:bg-gray-100">
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
-                      <div class="ml-4">
-                        <%= link_to client_path(client) do %>
-                          <div class="text-sm leading-5 font-medium text-gray-900"><%= client.full_name %></div>
-                          <div class="text-sm leading-5 text-gray-500"><%= client.email %></div>
-                        <% end %>
-                      </div>
+                      <%= link_to client_path(client) do %>
+                        <div class="text-sm leading-5 font-medium text-gray-900"><%= client.full_name %> 
+                          <span class="text-sm leading-5 text-gray-500">($50)</span>
+                        </div>
+                      <% end %>
                     </div>
                   </td>
-                  <%
-=begin%>
- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <div data-controller="modal">
-                      <button class="btn btn-small btn-secondary outline mr-2" data-action="click->modal#open">Edit</button>
-                      <i><%= client.client_profiles.first.reminder_message.to_plain_text.truncate(25, separator: ' ') %></i>
-                      <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
-                        <div class="fixed top-0 left-0 w-full h-full relative">
-                          <!-- Modal Card -->
-                          <div class="w-screen h-screen bg-white">
-                            <div class="flex flex-wrap justify-center items-center h-screen">
-                              <div class="w-2/3 m-auto">
-                                <%= form_with(model: client, url: message_index_update_path(client)) do |form| %>
-                                  <div class="form-group">
-                                    <%= form.fields_for :client_profiles do |cp| %>
-                                      <%= cp.label :reminder_message %>
-                                      <%= cp.rich_text_area :reminder_message, class: "form-control" %>
-                                    <% end %>
-                                  </div>
-                                  <div class="form-group flex justify-between">
-                                    <%= form.button class: "btn btn-primary" %>
-                                  </div>
-                                <% end %>
-
-                                <div class="flex justify-end items-center flex-wrap mt-6">
-                                  <button class="btn btn-primary" data-action="click->modal#close">Close</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                  <td class="hide-on-table-mobile px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                      <div class="text-sm leading-5 text-gray-500"><%= client.email %></div>
                     </div>
-                    
-                    
-                  </td> 
-<%
-=end%>
+                  </td>
+                  <td class="hide-on-table-mobile px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                      <div class="text-sm leading-5 text-gray-500"><%= client.full_street_address.rstrip unless client.full_street_address.nil? %></div>
+                      <div class="text-sm leading-5 text-gray-500"><%= client.city.rstrip %>, <%= client.state %> <%= client.zip_code %></div>
+                    </div>
+                  </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <%= link_to "Send Reminder", initial_reminder_path(client), class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-                    <div class="text-xs leading-5 text-gray-500">
-                      <% if client.last_reminder.nil? %>
-                        No reminders sent yet.
-                      <% else %>
-                        Last sent <%= client.last_reminder.created_at.strftime("%a %b %e") %>
+                    <div class="flex justify-end items-center">
+                      <%= link_to initial_reminder_path(client), class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+                        Complete
                       <% end %>
                     </div>
                   </td>

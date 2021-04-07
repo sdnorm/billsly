@@ -28,3 +28,9 @@ trix-toolbar .trix-button-group--file-tools {
 trix-toolbar .trix-button--icon-code {
   display: none;
 }
+
+@media (min-width: 768px) {  
+  .hide-table-column-mobile {
+    display: none;
+  }
+}

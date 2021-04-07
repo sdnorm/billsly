@@ -24,3 +24,33 @@
   --tw-border-opacity: 1;
   border-color: rgba(209, 213, 219, var(--tw-border-opacity));
 }
+
+.hide-on-table-mobile {
+  display: revert;
+}
+
+@media (max-width: 768px) {  
+  .hide-on-table-mobile {
+    display: none;
+  }
+}
+
+.btn-gray-sm {
+  color: #374150;
+  background-color: #e5e7eb;
+  border-style: solid;
+  border-color: #d1d5db;
+  border-width: 1px;
+  padding-left: .5rem !important;
+  padding-right: .5rem !important;
+  height: 37px !important;
+  line-height: 32px !important;
+}
+
+.btn-gray {
+  color: #374150;
+  background-color: #e5e7eb;
+  border-style: solid;
+  border-color: #d1d5db;
+  border-width: 1px;
+}
