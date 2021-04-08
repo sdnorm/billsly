@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html class="h-full antialiased" lang="<%= I18n.locale %>">
+  <head>
+    <title>
+      <% if content_for?(:title) %>
+        <%= yield :title %> |
+      <% end %>
+      <%= Jumpstart.config.application_name %>
+    </title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%# All assets are defined in Webpacker app/javascripts now %>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+
+    <%# Be sure to add your own custom favicons %>
+    <%= render "shared/favicons" %>
+    <%= render "shared/payments_dependencies" %>
+
+    <%# Replace this with your FontAwesome Pro Kit code %>
+    <script src="https://kit.fontawesome.com/0e5ab6a736.js"></script>
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <%= yield :head %>
+    <!-- stonly-widget - copy into the head -->
+      <script>var STONLY_WID = "4cff220e-834b-11eb-accc-0ad3430e55ea";</script>
+      <script>
+        !function(s,t,o,n,l,y,w,g){s.StonlyWidget||((w=s.StonlyWidget=function(){
+        w._api?w._api.apply(w,arguments):w.queue.push(arguments)}).queue=[],(y=t.createElement(o)).async=!0,
+        (g=new XMLHttpRequest).open("GET",n+"version?v="+Date.now(),!0),g.onreadystatechange=function(){
+        4===g.readyState&&(y.src=n+"stonly-widget.js?v="+(200===g.status?g.responseText:Date.now()),
+        (l=t.getElementsByTagName(o)[0]).parentNode.insertBefore(y,l))},g.send())
+        }(window,document,"script","https://stonly.com/js/widget/v2/");
+      </script>
+    <!-- stonly-widget - copy into the head -->
+  </head>
+
+  <body class="h-full font-sans antialiased font-normal leading-normal bg-gray-100">
+    <div class="main">
+      <%= render partial: "shared/flash" %>
+      <nav class="flex flex-wrap items-center justify-between px-4 py-2 bg-white border-b text-sm" data-controller="toggle">
+        <div class="flex items-center flex-shrink-0 mr-6">
+          <%= link_to root_path do %>
+            <div class="text-gray-700 hover:text-gray-800">
+              <h2>Billsly</h2>
+            </div>  
+          <% end %>
+        </div>
+      </nav>
+
+      <div class="px-3 lg:px-0">
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render partial: "shared/footer" %>
+  </body>
+</html>

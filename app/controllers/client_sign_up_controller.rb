@@ -2,6 +2,8 @@ class ClientSignUpController < ApplicationController
 
   before_action :set_account
 
+  layout "client_sign_up"
+
   def index
     @client = Client.new
     @client.client_profiles.build
