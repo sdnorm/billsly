@@ -3,7 +3,8 @@ class ClientsController < ApplicationController
   before_action :set_account
   before_action :set_client, only: [
     :show, :edit, :update, :destroy, :initial_reminder, 
-    :message_index_update, :revert_to_account_default_message, :revert_to_last_specific_message
+    :message_index_update, :revert_to_account_default_message, :revert_to_last_specific_message,
+    :work_complete
   ]
 
   def bulk_send_reminders
@@ -25,6 +26,11 @@ class ClientsController < ApplicationController
 
   # GET /clients/1
   def show
+  end
+  
+  def work_complete_index
+    @client.work_complete(current_account, current_user)
+    redirect_to clients_url, notice: "Work completed for #{@client.first_name}!"
   end
 
   def initial_reminder

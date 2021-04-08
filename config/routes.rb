@@ -116,6 +116,7 @@ Rails.application.routes.draw do
     end
     resources :reminders
     resources :sp_payment_links
+    get 'clients/:id/work-complete-index', to: 'clients#work_complete_index', as: :work_complete_index
     get 'clients/:id/send-initial-reminder', to: 'clients#initial_reminder', as: :initial_reminder
     post '/bulk_reminder_send', to: 'clients#bulk_reminder_send', as: :bulk_reminder_send
     patch 'clients/:id/client-message-index-update', to: 'clients#message_index_update', as: :message_index_update

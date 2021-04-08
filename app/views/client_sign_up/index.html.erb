@@ -1,4 +1,4 @@
-<div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+<div class="bg-white pb-16 pt-8 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
   <div class="relative max-w-xl mx-auto">
     <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404">
       <defs>
@@ -18,12 +18,15 @@
     </svg>
     <div class="text-center">
       <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">New Client Sign Up</h2>
-      <p class="mt-4 text-lg leading-6 text-gray-500">Welcome to Billsly! Fill out the information below so <strong><%= @account.name %></strong> can easily follow up with you.</p>
+      <p class="mt-4 text-xl leading-6 text-gray-500">Welcome to Billsly!</p>
+      <p class="mt-4 text-lg leading-6 text-gray-500">
+        Fill out the information below so <br><strong><%= @account.name %></strong><br>can easily follow up with you.
+      </p>
     </div>
     <div class="mt-12">
       <%= form_with model: @client, url: client_sign_up_create_path(@account.id), class: "grid grid-cols-1 gap-y-6" do |form| %>
         <div class="grid grid-cols-6 gap-6">
-         <div class="col-span-6 sm:col-span-3">
+          <div class="col-span-6 sm:col-span-3">
             <%= form.label :first_name, class: "block text-sm font-medium text-gray-700" %>
             <%= form.text_field :first_name, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           </div>
@@ -68,16 +71,14 @@
         <div class="sm:col-span-2">
           <div class="flex items-start">
             <div class="flex-shrink-0">
-              <div class="form-group">
-                <%= form.check_box :terms_and_conditions, id: "tos", class: "form-checkbox mr-1" %>
-                <label for="tos" class="inline-block text-sm">
-                  <p class="text-base leading-6 text-gray-500">
-                    By selecting this, you agree to the 
-                    <%= link_to("Privacy Policy", privacy_path, target: "_blank", class: "font-medium text-gray-700 underline") %> and 
-                    <%= link_to("Terms of Service", terms_path, target: "_blank", class: "font-medium text-gray-700 underline") %>.
-                  </p>
-                </label>
-              </div>
+              <%= form.check_box :terms_and_conditions, id: "tos", class: "form-checkbox mr-1" %>
+            </div>
+            <div class="ml-3">
+              <p class="text-base leading-6 text-gray-500">
+                By selecting this, you agree to the
+                <%= link_to("Privacy Policy", privacy_path, target: "_blank", class: "font-medium text-gray-700 underline") %> and 
+                <%= link_to("Terms of Service", terms_path, target: "_blank", class: "font-medium text-gray-700 underline") %>.
+              </p>
             </div>
           </div>
         </div>

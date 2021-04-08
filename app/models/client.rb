@@ -56,6 +56,11 @@ class Client < ApplicationRecord
     "#{city}, #{state} #{zip_code}"
   end
 
+
+  def work_complete(account, service_provider)
+    CompletedService.create()
+  end
+
   def send_initial_reminder(account, service_provider)
     WorkCompleteMailer.with(client: self, account: account, service_provider: service_provider).initial_reminder.deliver_later
     if self.client_profiles.first.reminder_message.blank?
