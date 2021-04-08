@@ -4,6 +4,7 @@ class ClientSignUpController < ApplicationController
 
   def index
     @client = Client.new
+    @client.client_profiles.build
   end
 
   def create

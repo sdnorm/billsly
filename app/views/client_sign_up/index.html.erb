@@ -21,35 +21,49 @@
       <p class="mt-4 text-lg leading-6 text-gray-500">Welcome to Billsly! Fill out the information below so <strong><%= @account.name %></strong> can easily follow up with you.</p>
     </div>
     <div class="mt-12">
-      <%= form_with model: @client, url: client_sign_up_create_path(@account.id), class: "grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" do |form| %>
-        <div>
-          <label class="block text-sm font-medium leading-5 text-gray-700" for="first_name">First name</label>
-          <div class="mt-1">
-            <%= form.text_field :first_name, class: "py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" %>
+      <%= form_with model: @client, url: client_sign_up_create_path(@account.id), class: "grid grid-cols-1 gap-y-6" do |form| %>
+        <div class="grid grid-cols-6 gap-6">
+         <div class="col-span-6 sm:col-span-3">
+            <%= form.label :first_name, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :first_name, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           </div>
-        </div>
-        <div>
-          <label class="block text-sm font-medium leading-5 text-gray-700" for="last_name">Last name</label>
-          <div class="mt-1">
-            <%= form.text_field :last_name, class: "py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" %>
+
+          <div class="col-span-6 sm:col-span-3">
+            <%= form.label :last_name, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :last_name, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           </div>
-        </div>
-        <div class="sm:col-span-2">
-          <label class="block text-sm font-medium leading-5 text-gray-700" for="email">Email</label>
-          <div class="mt-1">
-            <%= form.email_field :email, class: "py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" %>
+
+          <div class="col-span-6 sm:col-span-3">
+            <%= form.label :email, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :email, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           </div>
-        </div>
-        <div class="sm:col-span-2">
-          <label class="block text-sm font-medium leading-5 text-gray-700" for="phone_number">Phone Number</label>
-          <div class="mt-1 relative rounded-md shadow-sm">
-            <div class="absolute inset-y-0 left-0 flex items-center">
-              <select class="form-select h-full py-0 pl-4 pr-8 border-transparent bg-transparent text-gray-500 transition ease-in-out duration-150" aria-label="Country">
-                <option>US</option>
-              </select>
+
+          <div class="col-span-6 sm:col-span-3">
+            <%= form.label :phone_number, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :phone_number, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+          </div>
+          <%= form.fields_for :client_profiles do |cp| %>
+            <div class="col-span-6 sm:col-span-3">
+              <%= cp.label "Address 1", class: "block text-sm font-medium text-gray-700" %>
+              <%= cp.text_field :address1, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
             </div>
-            <%= form.text_field :phone_number, class: "py-3 px-4 block w-full pl-20 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md", placeholder: "+1 (555) 987-6543", autocomplete: "tel" %>
-          </div>
+            <div class="col-span-6 sm:col-span-3">
+              <%= cp.label "Address 2", class: "block text-sm font-medium text-gray-700" %>
+              <%= cp.text_field :address2, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+              <%= cp.label :city, class: "block text-sm font-medium text-gray-700" %>
+              <%= cp.text_field :city, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+              <%= cp.label :state, class: "block text-sm font-medium text-gray-700" %>
+              <%= cp.text_field :state, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+              <%= cp.label :zip_code, class: "block text-sm font-medium text-gray-700" %>
+              <%= cp.text_field :zip_code, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+          <% end %>
         </div>
         <div class="sm:col-span-2">
           <div class="flex items-start">
