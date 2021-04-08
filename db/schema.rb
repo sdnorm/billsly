@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_200401) do
+ActiveRecord::Schema.define(version: 2021_04_07_210904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -148,6 +148,13 @@ ActiveRecord::Schema.define(version: 2021_04_05_200401) do
     t.bigint "payment_options", array: true
     t.bigint "payment_option"
     t.text "last_reminder_message"
+    t.bigint "dollar_amount_in_cents"
+    t.decimal "dollar_amount"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
     t.index ["account_id"], name: "index_client_profiles_on_account_id"
     t.index ["client_id"], name: "index_client_profiles_on_client_id"
   end

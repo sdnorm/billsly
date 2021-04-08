@@ -55,7 +55,10 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
-    # @client.client_profiles.build
+    @client.client_profiles.build
+    @payment_options = @account.sp_payment_links.pluck(:name, :id)
+    @payment_options << ["", ""]
+    @payment_options = @payment_options.reverse
   end
 
   # GET /clients/1/edit

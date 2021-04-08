@@ -1,43 +1,86 @@
 <%= form_with(model: client) do |form| %>
   <%= render "shared/error_messages", resource: form.object %>
 
-  <div class="form-group">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, class: "form-control" %>
-  </div>
+  <div class="grid grid-cols-6 gap-6">
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.label :first_name, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :first_name, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: "form-control" %>
-  </div>
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.label :last_name, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :last_name, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "form-control" %>
-  </div>
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :email, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number, class: "form-control" %>
-  </div>
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.label :phone_number, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :phone_number, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.fields_for :client_profiles do |cp| %>
-      <%= cp.label :reminder_message %>
-      <%= cp.rich_text_area :reminder_message, class: "form-control" %>
-    <% end %>
-  </div>
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label "Address 1", class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.text_field :address1, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      <% end %>
+    </div>
 
-  <div class="form-group">
-    <%= form.fields_for :client_profiles do |cp| %>
-      <%= cp.label :payment_option %>
-      <%= cp.select :payment_option, options_for_select(@payment_options, [client.client_profiles.first.payment_option]), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-    <% end %>
-  </div>
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label "Address 2", class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.text_field :address2, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      <% end %>
+    </div>
 
-  <div class="form-group flex justify-between">
+    <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label :city, class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.text_field :city, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      <% end %>
+    </div>
+
+    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label :state, class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.text_field :state, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      <% end %>
+    </div>
+
+    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label :zip_code, class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.text_field :zip_code, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      <% end %>
+    </div>
+
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label :payment_option, class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.select :payment_option, options_for_select(@payment_options, [client.client_profiles.first.payment_option]), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+      <% end %>
+    </div>
+
+    <div class="col-span-6 sm:col-span-3">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label :dollar_amount, class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.text_field :dollar_amount, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      <% end %>
+      <div class="text-sm leading-5 text-gray-500">explanation for what dollar amount is</div>
+    </div>
+
+    <div class="col-span-6">
+      <%= form.fields_for :client_profiles do |cp| %>
+        <%= cp.label :reminder_message, class: "block text-sm font-medium text-gray-700" %>
+        <%= cp.rich_text_area :reminder_message, class: "form-control" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group flex justify-between mt-3">
     <%= form.button class: "btn btn-primary" %>
-
     <% if form.object.persisted? %>
       <%= link_to t("delete"), form.object, class: "btn btn-danger outline", method: :delete, data: { confirm: t("are_you_sure") } %>
     <% end %>
