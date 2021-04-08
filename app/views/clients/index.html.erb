@@ -92,7 +92,7 @@
                   <td class="hide-on-table-mobile px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
                       <div class="text-sm leading-5 text-gray-500"><%= client.full_street_address.rstrip unless client.full_street_address.nil? %></div>
-                      <div class="text-sm leading-5 text-gray-500"><%= client.city.rstrip %>, <%= client.state %> <%= client.zip_code %></div>
+                      <div class="text-sm leading-5 text-gray-500"><%= client.city.rstrip unless client.city.nil? %>, <%= client.state %> <%= client.zip_code %></div>
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
