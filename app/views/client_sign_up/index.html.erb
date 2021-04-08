@@ -69,11 +69,15 @@
           <div class="flex items-start">
             <div class="flex-shrink-0">
               <div class="form-group">
-                <%= form.check_box :terms_and_conditions, class: "form-checkbox" %>
+                <%= form.check_box :terms_and_conditions, id: "tos", class: "form-checkbox mr-1" %>
+                <label for="tos" class="inline-block text-sm">
+                  <p class="text-base leading-6 text-gray-500">
+                    By selecting this, you agree to the 
+                    <%= link_to("Privacy Policy", privacy_path, target: "_blank", class: "font-medium text-gray-700 underline") %> and 
+                    <%= link_to("Terms of Service", terms_path, target: "_blank", class: "font-medium text-gray-700 underline") %>.
+                  </p>
+                </label>
               </div>
-            </div>
-            <div class="ml-3">
-              <p class="text-base leading-6 text-gray-500">By selecting this, you agree to the <a class="font-medium text-gray-700 underline" href="#">Privacy Policy</a> and <a class="font-medium text-gray-700 underline" href="#">Cookie Policy</a>.</p>
             </div>
           </div>
         </div>

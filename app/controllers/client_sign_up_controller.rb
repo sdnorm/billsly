@@ -12,7 +12,7 @@ class ClientSignUpController < ApplicationController
     if @client.save
       AccountClient.create!(client_id: @client.id, account_id: @account.id)
       ClientProfile.create!(client_id: @client.id, account_id: @account.id)
-      redirect_to clients_path, notice: "Your sign up was successful. This is going to help #{@account.name} out a lot!"
+      redirect_to root_path, notice: "Your sign up was successful. This is going to help #{@account.name} out a lot!"
     else
       render :new, status: :unprocessable_entity
     end
