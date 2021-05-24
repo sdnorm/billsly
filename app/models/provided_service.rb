@@ -18,4 +18,8 @@
 #  index_provided_services_on_client_profile_id  (client_profile_id)
 #
 class ProvidedService < ApplicationRecord
+
+  has_many :clients_provided_services, dependent: :destroy 
+  has_many :clients, through: :clients_provided_services
+
 end

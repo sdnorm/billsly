@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_210904) do
+ActiveRecord::Schema.define(version: 2021_04_08_202231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -172,6 +172,15 @@ ActiveRecord::Schema.define(version: 2021_04_07_210904) do
     t.string "state"
     t.string "zip_code"
     t.boolean "terms_and_conditions"
+  end
+
+  create_table "clients_provided_services", force: :cascade do |t|
+    t.bigint "provided_service_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_clients_provided_services_on_client_id"
+    t.index ["provided_service_id"], name: "index_clients_provided_services_on_provided_service_id"
   end
 
   create_table "completed_services", force: :cascade do |t|
@@ -361,6 +370,8 @@ ActiveRecord::Schema.define(version: 2021_04_07_210904) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "client_profiles", "accounts"
   add_foreign_key "client_profiles", "clients"
+  add_foreign_key "clients_provided_services", "clients"
+  add_foreign_key "clients_provided_services", "provided_services"
   add_foreign_key "receive_payment_links", "accounts"
   add_foreign_key "user_connected_accounts", "users"
 end

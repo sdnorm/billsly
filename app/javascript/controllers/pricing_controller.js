@@ -9,8 +9,8 @@ export default class extends Controller {
 
   connect() {
     // Classes toggle on the plan switcher items
-    this.activeFrequencyClass   = (this.data.get("active-frequency-class") || "bg-white text-black hover:text-black").split(" ")
-    this.inactiveFrequencyClass = (this.data.get("inactive-frequency-class") || "text-white hover:text-gray-300").split(" ")
+    this.activeFrequencyClass   = (this.data.get("active-frequency-class") || "bg-white border-indigo-700 shadow-sm text-indigo-700 whitespace-nowrap hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white focus:z-10").split(" ")
+    this.inactiveFrequencyClass = (this.data.get("inactive-frequency-class") || "ml-0.5 border border-transparent text-indigo-200 hover:bg-indigo-800").split(" ")
 
     // Classes toggle on the plans
     this.activePlansClass   = (this.data.get("activePlansClass") || "flex").split(" ")
