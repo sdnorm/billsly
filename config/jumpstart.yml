@@ -15,3 +15,5 @@ integrations:
 - honeybadger
 payment_processors:
 - stripe
+omniauth_providers:
+- google-oauth2

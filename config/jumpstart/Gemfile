@@ -1,3 +1,4 @@
+gem 'omniauth-google-oauth2'
 gem 'honeybadger'
 gem 'stripe'
 gem 'stripe_event'
