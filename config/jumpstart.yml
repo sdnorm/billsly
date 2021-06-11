@@ -16,4 +16,5 @@ integrations:
 payment_processors:
 - stripe
 omniauth_providers:
+- facebook
 - google-oauth2
