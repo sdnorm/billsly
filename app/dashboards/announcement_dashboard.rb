@@ -12,6 +12,10 @@ class AnnouncementDashboard < Administrate::BaseDashboard
     id: Field::Number,
     kind: Field::String,
     title: Field::String,
+<<<<<<< HEAD
+=======
+    description: Field::RichText,
+>>>>>>> jumpstart/master
     published_at: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,

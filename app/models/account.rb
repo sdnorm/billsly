@@ -43,6 +43,7 @@ class Account < ApplicationRecord
   belongs_to :owner, class_name: "User"
   has_many :account_invitations, dependent: :destroy
   has_many :account_users, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_many :users, through: :account_users
   has_many :account_clients, dependent: :destroy
   has_many :clients, through: :account_clients
@@ -53,7 +54,9 @@ class Account < ApplicationRecord
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }
+  scope :sorted, -> { order(personal: :desc, name: :asc) }
 
+  has_noticed_notifications
   has_one_attached :avatar
 
   has_rich_text :default_reminder_message

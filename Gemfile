@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 2.7"
+ruby "~> 3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1.0"
+gem "rails", "~> 6.1.3.1"
 # Use postgresql as the database for Active Record
 gem "pg"
 # Use Puma as the app server
@@ -12,7 +12,7 @@ gem "puma", "~> 5.0"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 6.0"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "6.0.0.beta.5"
+gem "webpacker", "6.0.0.beta.7"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
 # Use Redis adapter to run Action Cable in production
@@ -52,11 +52,10 @@ group :test do
   gem "webdrivers"
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data"
 
 # Jumpstart dependencies
-gem "jumpstart", path: "lib/jumpstart"
+gem "jumpstart", path: "lib/jumpstart", group: :omit
 
 gem "acts_as_tenant"
 gem "administrate", github: "excid3/administrate", branch: "jumpstart" # '~> 0.10.0'
@@ -68,19 +67,21 @@ gem "devise_masquerade", github: "excid3/devise_masquerade"
 gem "hotwire-rails", "~> 0.1.2"
 gem "image_processing", "~> 1.9", ">= 1.9.2"
 gem "inline_svg", "~> 1.6"
-gem "invisible_captcha", "~> 1.0"
+gem "invisible_captcha", "~> 2.0"
 gem "local_time", "~> 2.1"
 gem "name_of_person", "~> 1.0"
-gem "noticed", "~> 1.2"
+gem "noticed", "~> 1.3"
 gem "oj", "~> 3.8", ">= 3.8.1"
-gem "pagy", "~> 3.7"
-gem "pay", "~> 2.4.0"
+gem "omniauth", "~> 2.0", ">= 2.0.4"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "pagy", "~> 4.1"
+gem "pay", "~> 2.6.0"
 gem "pg_search", "~> 2.3"
+gem "prefixed_ids", "~> 1.2"
 gem "receipts", "~> 1.0.0"
+gem "rotp", "~> 6.2"
+gem "rqrcode"
 gem "ruby-oembed", "~> 0.14.0", require: "oembed"
-
-# We always want the latest versions of these gems, so no version numbers
-gem "omniauth", "~> 1.9", ">= 1.9.1"
 gem "strong_migrations", "~> 0.7.6"
 gem "whenever", require: false
 

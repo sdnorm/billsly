@@ -2,6 +2,8 @@
 Rails.application.routes.draw do
 
   get '.well-known/apple-developer-merchantid-domain-association', to: 'apple_pays#show', as: :apple_pay
+  draw :turbo
+
   # Jumpstart views
   if Rails.env.development? || Rails.env.test?
     mount Jumpstart::Engine, at: "/jumpstart"
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
       end
       resources :accounts
       resources :account_users
-      resources :plans
+      resources :plans  
       namespace :pay do
         resources :charges
         resources :subscriptions
@@ -42,8 +44,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :auth
       resource :me, controller: :me
+      resource :password
       resources :accounts
       resources :users
+      resources :notification_tokens, only: :create
     end
   end
 
@@ -52,8 +56,12 @@ Rails.application.routes.draw do
     controllers: {
       masquerades: "jumpstart/masquerades",
       omniauth_callbacks: "users/omniauth_callbacks",
-      registrations: "users/registrations"
+      registrations: "users/registrations",
+      sessions: "users/sessions"
     }
+  devise_scope :user do
+    get "session/otp", to: "sessions#otp"
+  end
 
   resources :announcements, only: [:index]
   resources :api_tokens
@@ -75,15 +83,19 @@ Rails.application.routes.draw do
     patch :resume
   end
   resources :charges
+
   namespace :account do
     resource :password
   end
-
   resources :notifications, only: [:index, :show]
   namespace :users do
     resources :mentions, only: [:index]
   end
   namespace :user, module: :users do
+    resource :two_factor, controller: :two_factor do
+      get :backup_codes
+      get :verify
+    end
     resources :connected_accounts
   end
 
@@ -101,6 +113,8 @@ Rails.application.routes.draw do
     get :privacy
     get :pricing
   end
+
+  post :sudo, to: "users/sudo#create"
 
   match "/404", via: :all, to: "errors#not_found"
   match "/500", via: :all, to: "errors#internal_server_error"

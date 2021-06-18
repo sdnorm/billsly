@@ -27,10 +27,14 @@ class AccountDashboard < Administrate::BaseDashboard
     card_exp_month: Field::String,
     card_exp_year: Field::String,
     extra_billing_info: Field::Text,
+<<<<<<< HEAD
     plan: Field::String,
     quantity: Field::Number,
     card_token: Field::String,
     sp_payment_link: Field::HasMany
+=======
+    quantity: Field::Number
+>>>>>>> jumpstart/master
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -68,9 +72,7 @@ class AccountDashboard < Administrate::BaseDashboard
     :card_exp_month,
     :card_exp_year,
     :extra_billing_info,
-    :plan,
-    :quantity,
-    :card_token
+    :quantity
   ].freeze
 
   # FORM_ATTRIBUTES

@@ -90,7 +90,7 @@ en:
       already_signed_out: "Signed out successfully."
       new:
         sign_up_html: "Or %{link}"
-        sign_in: "Log In"
+        sign_in: "Log in"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
     shared:
@@ -102,6 +102,7 @@ en:
         sign_in: Log in
         sign_in_with_provider: Sign in with %{provider}
         sign_up: Sign up
+        redirecting: "Redirecting..."
       minimum_password_length:
         one: "(%{count} character minimum)"
         other: "(%{count} characters minimum)"

@@ -7,6 +7,9 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
 // Rails functionality
 import Rails from "@rails/ujs"
 import { Turbo } from "@hotwired/turbo-rails"
@@ -30,7 +33,7 @@ components.keys().forEach(components)
 import LocalTime from "local-time"
 LocalTime.start()
 
-// ADD YOUR JAVACSRIPT HERE
+// ADD YOUR JAVASCRIPT HERE
 
 // Start Rails UJS
 Rails.start()
