@@ -1,26 +1,119 @@
-<div class="relative p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col">
-  <div class="flex-1">
-    <h3 class="text-xl font-semibold text-gray-900"><%= plan.name %></h3>
-    <p class="mt-4 flex items-baseline text-gray-900">
-      <span class="text-5xl font-extrabold tracking-tight"><%= plan.amount / 100 %></span>
-      <span class="ml-1 text-xl font-semibold">/ <%= plan.interval %></span>
-    </p>
-    <p class="mt-6 text-gray-500">The essentials to provide your best work for clients.</p>
-
-    <!-- Feature list -->
-    <ul role="list" class="mt-6 space-y-6">
-      <% Array.wrap(plan.features).each do |plan_feature| %>
-        <li class="flex">
-          <!-- Heroicon name: outline/check -->
-          <svg class="flex-shrink-0 w-6 h-6 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <span class="ml-3 text-gray-500"><%= plan_feature %></span>
-        </li>
-      <% end %>
-    </ul>
+<% if plan.name == "Starter" %>
+  <div class="mx-auto max-w-md lg:mx-0 lg:max-w-none lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3">
+    <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-l-lg">
+      <div class="flex-1 flex flex-col">
+        <div class="bg-white px-6 py-10">
+          <div>
+            <h3 class="text-center text-2xl leading-8 font-medium text-gray-900" id="tier-hobby"><%= plan.name %></h3>
+            <div class="mt-4 flex items-center justify-center">
+              <span class="px-3 flex items-start text-6xl leading-none tracking-tight text-gray-900">
+                <span class="mt-2 mr-2 text-4xl font-medium">$</span>
+                <span class="font-extrabold"><%= plan.amount / 100 %></span>
+              </span>
+              <span class="text-xl leading-7 font-medium text-gray-500">/<%= plan.interval %></span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10">
+          <ul>
+            <% Array.wrap(plan.features).each do |plan_feature| %>
+              <li class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <p class="ml-3 text-base leading-6 font-medium text-gray-500"><%= plan_feature %></p>
+              </li>
+            <% end %>  
+          </ul>
+          <div class="mt-8">
+            <div class="rounded-lg shadow-md">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <a href="#" class="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium">Monthly billing</a>
-  <%= yield %>
-</div>
+<% elsif plan.name == "Professional" %>
+  <div class="mt-10 max-w-lg mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-4">
+    <div class="relative z-10 rounded-lg shadow-xl">
+      <div class="pointer-events-none absolute inset-0 rounded-lg border-2 border-indigo-600"></div>
+      <div class="absolute inset-x-0 top-0 transform translate-y-px">
+        <div class="flex justify-center transform -translate-y-1/2">
+          <span class="inline-flex rounded-full bg-indigo-600 px-4 py-1 text-sm leading-5 font-semibold tracking-wider uppercase text-white">Most value</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-t-lg px-6 pt-12 pb-10">
+        <div>
+          <h3 class="text-center text-3xl leading-9 font-semibold text-gray-900 sm:-mx-6" id="tier-growth"><%= plan.name %></h3>
+          <div class="mt-4 flex items-center justify-center">
+            <span class="px-3 flex items-start text-6xl leading-none tracking-tight text-gray-900 sm:text-6xl">
+              <span class="mt-2 mr-2 text-4xl font-medium">$</span>
+              <span class="font-extrabold"><%= plan.amount / 100 %></span>
+            </span>
+            <span class="text-2xl leading-8 font-medium text-gray-500">/<%= plan.interval %></span>
+          </div>
+        </div>
+      </div>
+      <div class="border-t-2 border-gray-100 rounded-b-lg pt-10 pb-8 px-6 bg-gray-50 sm:px-10 sm:py-10">
+        <ul>
+          <% Array.wrap(plan.features).each do |plan_feature| %>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-base leading-6 font-medium text-gray-500"><%= plan_feature %></p>
+            </li>
+          <% end %>  
+        </ul>
+        <div class="mt-8">
+          <div class="rounded-lg shadow-md">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="mt-10 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-6 lg:col-end-8 lg:row-start-2 lg:row-end-3">
+    <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-r-lg">
+      <div class="flex-1 flex flex-col">
+        <div class="bg-white px-6 py-10">
+          <div>
+            <h3 class="text-center text-2xl leading-8 font-medium text-gray-900" id="tier-scale"><%= plan.name %></h3>
+            <div class="mt-4 flex items-center justify-center">
+              <span class="px-3 flex items-start text-6xl leading-none tracking-tight text-gray-900">
+                <span class="mt-2 mr-2 text-4xl font-medium">$</span>
+                <span class="font-extrabold"><%= plan.amount / 100 %></span>
+              </span>
+              <span class="text-xl leading-7 font-medium text-gray-500">/<%= plan.interval %></span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10">
+          <ul>
+          <% Array.wrap(plan.features).each do |plan_feature| %>
+            <li class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p class="ml-3 text-base leading-6 font-medium text-gray-500"><%= plan_feature %></p>
+            </li>
+          <% end %>  
+        </ul>
+        <div class="mt-8">
+          <div class="rounded-lg shadow-md">
+            <%= yield %>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
