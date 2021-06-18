@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_04_08_202231) do
-=======
 ActiveRecord::Schema.define(version: 2021_04_22_222152) do
->>>>>>> jumpstart/master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -207,6 +203,8 @@ ActiveRecord::Schema.define(version: 2021_04_22_222152) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "notification_tokens", force: :cascade do |t|
     t.bigint "user_id"
     t.string "token", null: false
