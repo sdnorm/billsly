@@ -88,7 +88,7 @@ class AccountsController < Accounts::BaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_account
-    @account = current_user.accounts.find(params[:id])
+    @account = current_user.accounts.friendly.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
