@@ -34,6 +34,17 @@ class CompletedServicesController < ApplicationController
     end
   end
 
+    # POST /completed_services
+    def create_from_dashboard
+      @completed_service = CompletedService.new(completed_service_params)
+  
+      if @completed_service.save
+        redirect_to root_path, notice: "This job was marked as completed."
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
   # PATCH/PUT /completed_services/1
   def update
     if @completed_service.update(completed_service_params)

@@ -1,7 +1,6 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
-  resources :completed_services
   get '.well-known/apple-developer-merchantid-domain-association', to: 'apple_pays#show', as: :apple_pay
   # Jumpstart views
   if Rails.env.development? || Rails.env.test?
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   # Administrate
   authenticated :user, lambda { |u| u.admin? } do
     namespace :admin do
+      resources :completed_services
       resources :api_tokens
       resources :account_clients
       resources :client_profiles
@@ -117,6 +117,8 @@ Rails.application.routes.draw do
     end
     resources :reminders
     resources :sp_payment_links
+    resources :completed_services
+    post 'mark-job-complete', to: 'completed_services#create_from_dashboard', as: :completed_service_from_dash
     get 'clients/:id/work-complete-index', to: 'clients#work_complete_index', as: :work_complete_index
     get 'clients/:id/send-initial-reminder', to: 'clients#initial_reminder', as: :initial_reminder
     post '/bulk_reminder_send', to: 'clients#bulk_reminder_send', as: :bulk_reminder_send

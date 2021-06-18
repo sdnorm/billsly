@@ -12,7 +12,11 @@
       <table class="table">
         <thead>
           <tr>
-            <th class="p-3 uppercase text-left text-xs"><%= sortable @completed_services, :account_id, "Account", class: "text-gray-700" %></th>
+            <%
+=begin%>
+ <th class="p-3 uppercase text-left text-xs"><%= sortable @completed_services, :account_id, "Account", class: "text-gray-700" %></th> 
+<%
+=end%>
             <th class="p-3 uppercase text-left text-xs"><%= sortable @completed_services, :client_profile_id, "Client profile", class: "text-gray-700" %></th>
             <th class="p-3 uppercase text-left text-xs text-gray-700 w-20"><%= t("shared.scaffold.actions") %></th>
           </tr>
@@ -21,9 +25,12 @@
         <tbody>
         <% @completed_services.each do |completed_service| %>
           <tr class="group border-t border-gray-400 hover:bg-gray-100">
-                      <td class="p-3"><%= completed_service.account_id %></td>
-                      <td class="p-3"><%= completed_service.client_profile_id %></td>
-          
+            <%
+=begin%>
+ <td class="p-3"><%= completed_service.account %></td> 
+<%
+=end%>
+            <td class="p-3"><%= completed_service.client_profile.client.full_name %></td>
             <td>
               <%= link_to t("shared.scaffold.view"), completed_service, class: "btn btn-link no-underline" %>
             </td>
