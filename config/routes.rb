@@ -1,6 +1,7 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
+  resources :completed_services
   get '.well-known/apple-developer-merchantid-domain-association', to: 'apple_pays#show', as: :apple_pay
   # Jumpstart views
   if Rails.env.development? || Rails.env.test?

@@ -16,4 +16,8 @@
 #  index_completed_services_on_provided_service_id  (provided_service_id)
 #
 class CompletedService < ApplicationRecord
+
+  belongs_to :account 
+  belongs_to :client_profile
+
 end

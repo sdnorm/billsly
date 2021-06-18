@@ -8,19 +8,19 @@
     <div class="bg-white rounded shadow p-8">
       <div class="mb-4">
         <h5>First name</h5>
-        <div class="client-detail-info"><%= @client.first_name %></div>
+        <div class="border-b-2"><%= @client.first_name %></div>
       </div>
       <div class="mb-4">
         <h5>Last name</h5>
-        <div class="client-detail-info"><%= @client.last_name %></div>
+        <div class="border-b-2"><%= @client.last_name %></div>
       </div>
       <div class="mb-4">
         <h5>Email</h5>
-        <div class="client-detail-info"><%= @client.email %></div>
+        <div class="border-b-2"><%= @client.email %></div>
       </div>
       <div class="mb-4">
         <h5>Phone number</h5>
-        <div class="client-detail-info"><%= @client.phone_number %></div>
+        <div class="border-b-2"><%= @client.phone_number %></div>
       </div>
       <div class="mb-4 mt-2">
         <h4>Client Profile</h4>
@@ -49,7 +49,7 @@
           <% elsif @client.client_profiles.first.payment_option.blank?%>
             <h5>No specific payment link applied yet. We will send all links you have saved. </h5>
           <% else %>
-            <div class="client-detail-info"><%= @account.sp_payment_links.find(@client.client_profiles.first.payment_option).name %></div>
+            <div class="border-b-2"><%= @account.sp_payment_links.find(@client.client_profiles.first.payment_option).name %></div>
           <% end %>  
         <% end %>
       </div>
