@@ -8,6 +8,11 @@
         <div class="flex justify-between items-center mb-4">
           <h1 class="h3">Payment Links</h1>
           <% if @sp_payment_links.any? %>
+            <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary hidden md:block" %>
+          <% end %>
+        </div>
+        <div class="flex justify-between items-center mb-4 md:hidden">
+          <% if @sp_payment_links.any? %>
             <%= link_to t("shared.scaffold.new.title", model: "Payment Link"), new_sp_payment_link_path, class: "btn btn-primary" %>
           <% end %>
         </div>
