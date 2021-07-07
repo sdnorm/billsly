@@ -44,6 +44,15 @@ class CompletedServicesController < ApplicationController
       end
     end
 
+    def create_from_client_show
+      @completed_service = CompletedService.new(completed_service_params)
+      if @completed_service.save
+        redirect_to client_path(@completed_service.client_profile.client), notice: "This job was marked as completed."
+      else
+        redirect_to client_path(@completed_service.client_profile.client), alert: "Something happened and the service was not marked complete! Please try again."
+      end
+    end
+
   # PATCH/PUT /completed_services/1
   def update
     if @completed_service.update(completed_service_params)

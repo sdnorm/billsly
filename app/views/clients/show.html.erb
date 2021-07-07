@@ -5,6 +5,14 @@
       <%= link_to t("edit"), edit_client_path(@client), class: "btn btn-link" %>
     </div>
 
+    <div class="my-2">
+      <%= form_for CompletedService.new, url: create_from_client_show_path do |form| %>
+        <%= form.hidden_field :account_id, value: current_account.id %>
+        <%= form.hidden_field :client_profile_id, value: @client.client_profiles.first.id %>
+        <%= form.submit "Complete Service", class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-md font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <% end %>
+    </div>
+
     <div class="bg-white rounded shadow p-8">
       <div class="mb-4">
         <h5>First name</h5>

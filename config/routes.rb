@@ -133,6 +133,7 @@ Rails.application.routes.draw do
     resources :sp_payment_links
     resources :completed_services
     post 'mark-job-complete', to: 'completed_services#create_from_dashboard', as: :completed_service_from_dash
+    post 'mark-job-complete-client', to: "completed_services#create_from_client_show", as: :create_from_client_show
     get 'clients/:id/work-complete-index', to: 'clients#work_complete_index', as: :work_complete_index
     get 'clients/:id/send-initial-reminder', to: 'clients#initial_reminder', as: :initial_reminder
     post '/bulk_reminder_send', to: 'clients#bulk_reminder_send', as: :bulk_reminder_send
