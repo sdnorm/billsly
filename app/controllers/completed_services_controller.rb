@@ -37,11 +37,10 @@ class CompletedServicesController < ApplicationController
     # POST /completed_services
     def create_from_dashboard
       @completed_service = CompletedService.new(completed_service_params)
-  
       if @completed_service.save
         redirect_to root_path, notice: "This job was marked as completed."
       else
-        render :new, status: :unprocessable_entity
+        redirect_to root_path, alert: "Something happened and the job/service was not marked complete! Please try again."
       end
     end
 

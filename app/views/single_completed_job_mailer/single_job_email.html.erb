@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for your business <%= @recipient.first_name %>!</h1>
+    <p>
+      <%= @account.name %> completed the service. 
+    </p>
+    <p>
+      Please provide prompt payment at the links provided below.
+    </p>
+    <ul>
+      <% @account.sp_payment_links.each do |pay| %>
+        <li>
+          <%= link_to pay.name, pay.link %>
+        </li>
+      <% end %>
+    </ul>
+
+    <h1>Thanks!</h1>
+  </body>
+</html>

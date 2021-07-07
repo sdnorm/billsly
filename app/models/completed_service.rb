@@ -20,4 +20,10 @@ class CompletedService < ApplicationRecord
   belongs_to :account 
   belongs_to :client_profile
 
+  after_create :send_reminder
+
+  def send_reminder
+    SingleCompletedJobMailer.with(recipient: self.client_profile.client, account: self.account).single_job_email.deliver_now
+  end
+
 end
