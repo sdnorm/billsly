@@ -498,6 +498,10 @@ GEM
     ttfunk (1.7.0)
     turbo-rails (0.5.11)
       rails (>= 6.0.0)
+    twilio-ruby (5.56.0)
+      faraday (>= 0.9, < 2.0)
+      jwt (>= 1.5, <= 2.5)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2021.1)
@@ -598,6 +602,7 @@ DEPENDENCIES
   stripe
   stripe_event
   strong_migrations (~> 0.7.6)
+  twilio-ruby
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers

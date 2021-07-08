@@ -23,7 +23,24 @@ class CompletedService < ApplicationRecord
   after_create :send_reminder
 
   def send_reminder
-    SingleCompletedJobMailer.with(recipient: self.client_profile.client, account: self.account).single_job_email.deliver_now
+    puts " "
+    puts " "
+    puts " here "
+    reminder = Reminder.create(account_id: self.account.id, client_id: self.client_profile.client.id)
+    case self.client_profile.client.preferred_contact_method
+    when "text"
+      puts "yes"
+      reminder.single_service_text
+    when "email"
+      reminder.single_service_email
+    when "both"
+      reminder.single_service_text
+      reminder.single_service_email
+    else
+      reminder.single_service_text
+    end
+    puts " "
+    puts " "
   end
 
 end

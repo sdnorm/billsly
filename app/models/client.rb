@@ -2,19 +2,20 @@
 #
 # Table name: clients
 #
-#  id                   :bigint           not null, primary key
-#  address1             :string
-#  address2             :string
-#  city                 :string
-#  email                :string
-#  first_name           :string
-#  last_name            :string
-#  phone_number         :string
-#  state                :string
-#  terms_and_conditions :boolean
-#  zip_code             :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id                       :bigint           not null, primary key
+#  address1                 :string
+#  address2                 :string
+#  city                     :string
+#  email                    :string
+#  first_name               :string
+#  last_name                :string
+#  phone_number             :string
+#  preferred_contact_method :bigint
+#  state                    :string
+#  terms_and_conditions     :boolean
+#  zip_code                 :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
 #
 class Client < ApplicationRecord
 
@@ -28,6 +29,8 @@ class Client < ApplicationRecord
 
   has_many :clients_provided_services, dependent: :destroy 
   has_many :provided_services, through: :clients_provided_services
+
+  enum preferred_contact_method: [:text, :email, :both]#, default: :text
 
   include PgSearch::Model
   pg_search_scope :general_client_search, 

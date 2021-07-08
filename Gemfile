@@ -95,3 +95,5 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'sendgrid-ruby'
 
 gem 'friendly_id', '~> 5.4.0'
+
+gem 'twilio-ruby'

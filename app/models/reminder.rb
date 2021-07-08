@@ -27,5 +27,13 @@ class Reminder < ApplicationRecord
   # def self.test_email
   #   WorkCompleteMailer.test().deliver
   # end
+
+  def single_service_email
+    SingleCompletedJobMailer.with(recipient: self.client, account: self.account).single_job_email.deliver_now
+  end
+
+  def single_service_text
+    SingleCompletedServiceJob.perform_later(self.account, self.client)
+  end
   
 end

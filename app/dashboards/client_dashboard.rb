@@ -19,6 +19,7 @@ class ClientDashboard < Administrate::BaseDashboard
     last_name: Field::String,
     email: Field::String,
     phone_number: Field::String,
+    preferred_contact_method: Field::String,
     address1: Field::String,
     address2: Field::String,
     city: Field::String,
@@ -50,6 +51,7 @@ class ClientDashboard < Administrate::BaseDashboard
   last_name
   email
   phone_number
+  preferred_contact_method
   address1
   address2
   city
@@ -68,6 +70,7 @@ class ClientDashboard < Administrate::BaseDashboard
   last_name
   email
   phone_number
+  preferred_contact_method
   address1
   address2
   city
