@@ -28,7 +28,7 @@
       </div>
       <div class="mb-4">
         <h5>Phone number</h5>
-        <div class="border-b-2"><%= number_to_phone(@client.phone_number) %></div>
+        <div class="border-b-2"><%= number_to_phone(@client.phone_number, area_code: true) %></div>
       </div>
       <div class="mb-4 mt-2">
         <h4>Client Profile</h4>
