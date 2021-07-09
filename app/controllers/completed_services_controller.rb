@@ -68,6 +68,15 @@ class CompletedServicesController < ApplicationController
     redirect_to completed_services_url, notice: "Completed service was successfully destroyed."
   end
 
+  def test_reminder
+    test_email = TestEmailReminder.new(user_id: current_user.id)
+    if test_email.save
+      redirect_to clients_path, notice: "Test email successfully sent."
+    else
+      redirect_to clients_path, alert: "Something appears to have gone wrong. Double check your email address and try again."
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

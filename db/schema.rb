@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_025207) do
+ActiveRecord::Schema.define(version: 2021_07_09_031306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -316,6 +316,13 @@ ActiveRecord::Schema.define(version: 2021_07_09_025207) do
     t.index ["client_profile_id"], name: "index_sp_payment_links_on_client_profile_id"
   end
 
+  create_table "test_email_reminders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_test_email_reminders_on_user_id"
+  end
+
   create_table "text_messages", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -390,5 +397,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_025207) do
   add_foreign_key "clients_provided_services", "clients"
   add_foreign_key "clients_provided_services", "provided_services"
   add_foreign_key "receive_payment_links", "accounts"
+  add_foreign_key "test_email_reminders", "users"
   add_foreign_key "user_connected_accounts", "users"
 end

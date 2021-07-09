@@ -23,9 +23,6 @@ class CompletedService < ApplicationRecord
   after_create :send_reminder
 
   def send_reminder
-    puts " "
-    puts " "
-    puts " here "
     reminder = Reminder.create(account_id: self.account.id, client_id: self.client_profile.client.id)
     case self.client_profile.client.preferred_contact_method
     when "text"
@@ -39,8 +36,6 @@ class CompletedService < ApplicationRecord
     else
       reminder.single_service_text
     end
-    puts " "
-    puts " "
   end
 
 end
