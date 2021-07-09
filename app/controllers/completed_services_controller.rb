@@ -3,7 +3,11 @@ class CompletedServicesController < ApplicationController
 
   # GET /completed_services
   def index
-    @pagy, @completed_services = pagy(CompletedService.sort_by_params(params[:sort], sort_direction))
+    if params[:sort].present?
+      @pagy, @completed_services = pagy(CompletedService.sort_by_params(params[:sort], sort_direction))
+    else
+      @pagy, @completed_services = pagy(CompletedService.order(created_at: :desc))
+    end
 
     # We explicitly load the records to avoid triggering multiple DB calls in the views when checking if records exist and iterating over them.
     # Calling @completed_services.any? in the view will use the loaded records to check existence instead of making an extra DB call.
