@@ -46,7 +46,7 @@
       <div class="col-span-6 sm:col-span-3">
         <%= cp.label :payment_option, class: "block text-sm font-medium text-gray-700" %>
         <% if @payment_options.nil? %>
-          <%= cp.select :payment_option, options_for_select(@payment_options, [client.client_profiles.first.payment_option]), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+          <%= cp.select :payment_option, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
         <% else %>
           <%= cp.select :payment_option, options_for_select(@payment_options, [client.client_profiles.first.payment_option]), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
         <% end %>
