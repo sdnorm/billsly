@@ -24,8 +24,8 @@ class Client < ApplicationRecord
 
   has_many :reminders
 
-  has_many :client_profiles, dependent: :destroy
-  accepts_nested_attributes_for :client_profiles, reject_if: :all_blank, allow_destroy: true
+  has_many :client_profiles, inverse_of: :client
+  accepts_nested_attributes_for :client_profiles, allow_destroy: true#, reject_if: :all_blank, allow_destroy: true
 
   has_many :clients_provided_services, dependent: :destroy 
   has_many :provided_services, through: :clients_provided_services

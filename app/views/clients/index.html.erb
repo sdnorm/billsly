@@ -81,7 +81,7 @@
                     <div class="flex items-center">
                       <%= link_to client_path(client) do %>
                         <div class="text-sm leading-5 font-medium text-gray-900"><%= client.full_name %> 
-                          <span class="text-sm leading-5 text-gray-500">($50)</span>
+                          <span class="text-sm leading-5 text-gray-500">(<%= number_to_currency(client.client_profiles.first.dollar_amount) unless client.client_profiles.first.dollar_amount.nil? %>)</span>
                         </div>
                       <% end %>
                     </div>

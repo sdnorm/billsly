@@ -61,7 +61,7 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
-    @client.client_profiles.build
+    @client.client_profiles.new
     @payment_options = @account.sp_payment_links.pluck(:name, :id)
     @payment_options << ["", ""]
     @payment_options = @payment_options.reverse
@@ -77,11 +77,15 @@ class ClientsController < ApplicationController
   # POST /clients
   def create
     @client = Client.new(client_params)
+    # @client.account_id = current_account.id
     if @client.save
       AccountClient.create!(client_id: @client.id, account_id: current_account.id)
-      ClientProfile.create!(client_id: @client.id, account_id: current_account.id)
+      # ClientProfile.create!(client_id: @client.id)
       redirect_to clients_path, notice: "Client was successfully created."
     else
+      @payment_options = @account.sp_payment_links.pluck(:name, :id)
+      @payment_options << ["", ""]
+      @payment_options = @payment_options.reverse
       render :new, status: :unprocessable_entity
     end
   end
@@ -126,11 +130,18 @@ class ClientsController < ApplicationController
       :first_name, 
       :last_name, 
       :email, 
-      :phone_number, 
+      :phone_number,
       client_profiles_attributes: [
         :id, 
+        :account_id,
+        :address1, 
+        :address2, 
+        :city, 
+        :state, 
+        :zip_code,
         :reminder_message,
         :payment_option,
+        :dollar_amount,
         :_destroy
       ]
     )

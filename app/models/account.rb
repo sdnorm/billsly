@@ -48,7 +48,7 @@ class Account < ApplicationRecord
   has_many :account_clients, dependent: :destroy
   has_many :clients, through: :account_clients
 
-  has_many :client_profiles
+  # has_many :client_profiles
   has_many :sp_payment_links
   has_many :reminders
   has_many :completed_services
