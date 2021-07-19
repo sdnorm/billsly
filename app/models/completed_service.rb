@@ -3,6 +3,7 @@
 # Table name: completed_services
 #
 #  id                  :bigint           not null, primary key
+#  dollar_amount       :decimal(, )
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  account_id          :bigint
@@ -20,7 +21,12 @@ class CompletedService < ApplicationRecord
   belongs_to :account 
   belongs_to :client_profile
 
+  before_save :get_dollar_amount
   after_create :send_reminder
+
+  def get_dollar_amount
+    self.dollar_amount = self.client_profile.dollar_amount
+  end
 
   def send_reminder
     reminder = Reminder.create(account_id: self.account.id, client_id: self.client_profile.client.id)

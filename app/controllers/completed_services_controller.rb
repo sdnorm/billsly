@@ -1,12 +1,13 @@
 class CompletedServicesController < ApplicationController
   before_action :set_completed_service, only: [:show, :edit, :update, :destroy]
+  before_action :set_account
 
   # GET /completed_services
   def index
     if params[:sort].present?
-      @pagy, @completed_services = pagy(CompletedService.sort_by_params(params[:sort], sort_direction))
+      @pagy, @completed_services = pagy(@account.completed_services.sort_by_params(params[:sort], sort_direction))
     else
-      @pagy, @completed_services = pagy(CompletedService.order(created_at: :desc))
+      @pagy, @completed_services = pagy(@account.completed_services.order(created_at: :desc))
     end
 
     # We explicitly load the records to avoid triggering multiple DB calls in the views when checking if records exist and iterating over them.

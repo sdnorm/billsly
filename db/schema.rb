@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_031306) do
+ActiveRecord::Schema.define(version: 2021_07_19_222146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_07_09_031306) do
     t.bigint "provided_service_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "dollar_amount"
     t.index ["account_id"], name: "index_completed_services_on_account_id"
     t.index ["client_profile_id"], name: "index_completed_services_on_client_profile_id"
     t.index ["provided_service_id"], name: "index_completed_services_on_provided_service_id"
