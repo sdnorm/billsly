@@ -81,7 +81,7 @@
                     <div class="flex items-center">
                       <%= link_to client_path(client) do %>
                         <div class="text-sm leading-5 font-medium text-gray-900"><%= client.full_name %> 
-                          <span class="text-sm leading-5 text-gray-500">(<%= number_to_currency(client.client_profiles.first.dollar_amount) unless client.client_profiles.first.dollar_amount.nil? %>)</span>
+                          <span class="text-sm leading-5 text-gray-500"><%= "(#{number_to_currency(client.client_profiles.first.dollar_amount)})" unless client.client_profiles.first.dollar_amount.nil? %></span>
                         </div>
                       <% end %>
                     </div>
@@ -93,8 +93,8 @@
                   </td>
                   <td class="hide-on-table-mobile px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
-                      <div class="text-sm leading-5 text-gray-500"><%= client.full_street_address.rstrip unless client.full_street_address.nil? %></div>
-                      <div class="text-sm leading-5 text-gray-500"><%= client.city.rstrip unless client.city.nil? %>, <%= client.state %> <%= client.zip_code %></div>
+                      <div class="text-sm leading-5 text-gray-500"><%= client.client_profiles.first.full_street_address.rstrip unless client.client_profiles.first.full_street_address.nil? %></div>
+                      <div class="text-sm leading-5 text-gray-500">&nbsp;<%= "#{client.client_profiles.first.city.rstrip}," unless client.client_profiles.first.city.nil?%> <%= client.client_profiles.first.state %> <%= client.client_profiles.first.zip_code %></div>
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">

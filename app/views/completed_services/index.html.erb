@@ -3,7 +3,11 @@
     <h1 class="h3">Completed Services</h1>
 
     <% if @completed_services.any? %>
-      <%= link_to t("shared.scaffold.new.title", model: "Completed Service"), new_completed_service_path, class: "btn btn-primary" %>
+      <%
+=begin%>
+ <%= link_to t("shared.scaffold.new.title", model: "Completed Service"), new_completed_service_path, class: "btn btn-primary" %> 
+<%
+=end%>
     <% end %>
   </div>
 

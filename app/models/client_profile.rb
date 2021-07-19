@@ -37,5 +37,17 @@ class ClientProfile < ApplicationRecord
   # accepts_nested_attributes_for :sp_payment_links, allow_destroy: true
 
   has_rich_text :reminder_message
+
+  def full_street_address
+    if address2.nil?
+      "#{address1}"
+    else
+      "#{address1} #{address2}"
+    end
+  end
+
+  def city_state_zip
+    "#{city}, #{state} #{zip_code}"
+  end
   
 end

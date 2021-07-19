@@ -50,18 +50,6 @@ class Client < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def full_street_address
-    if address2.nil?
-      "#{address1}"
-    else
-      "#{address1} #{address2}"
-    end
-  end
-
-  def city_state_zip
-    "#{city}, #{state} #{zip_code}"
-  end
-
 
   def work_complete(account, service_provider)
     CompletedService.create()
