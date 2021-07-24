@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_19_222146) do
+ActiveRecord::Schema.define(version: 2021_07_24_032733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -327,6 +327,14 @@ ActiveRecord::Schema.define(version: 2021_07_19_222146) do
   create_table "text_messages", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "body"
+    t.string "recipient_number"
+    t.boolean "successfully_delivered"
+    t.bigint "client_id", null: false
+    t.bigint "account_id", null: false
+    t.bigint "type_of_message", array: true
+    t.index ["account_id"], name: "index_text_messages_on_account_id"
+    t.index ["client_id"], name: "index_text_messages_on_client_id"
   end
 
   create_table "user_connected_accounts", force: :cascade do |t|

@@ -32,7 +32,7 @@ class CompletedService < ApplicationRecord
     reminder = Reminder.create(account_id: self.account.id, client_id: self.client_profile.client.id)
     case self.client_profile.client.preferred_contact_method
     when "text"
-      puts "yes"
+      # puts "yes"
       reminder.single_service_text
     when "email"
       reminder.single_service_email
