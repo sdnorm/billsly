@@ -40,7 +40,7 @@ class TextMessage < ApplicationRecord
     )
   end
 
-  def text_body
+  def text_body 
     case self.type_of_message
     when "single_job"
       single_job_text_message_body

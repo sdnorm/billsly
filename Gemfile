@@ -97,3 +97,5 @@ gem 'sendgrid-ruby'
 gem 'friendly_id', '~> 5.4.0'
 
 gem 'twilio-ruby'
+
+gem "aws-sdk-s3", require: false
