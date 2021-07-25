@@ -20,8 +20,10 @@ digitalocean_spaces:
   access_key_id: <%= Rails.application.credentials.dig(:digitalocean_spaces, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:digitalocean_spaces, :secret_access_key) %>
   region: nyc3
+  # endpoint: 'https://billsly-cdn.nyc3.digitaloceanspaces.com/'
   endpoint: 'https://nyc3.digitaloceanspaces.com'
-  bucket: <%= Rails.application.credentials.dig(:digitalocean_spaces, :bucket) %>
+  bucket: 'billsly-cdn'
+  # bucket: <%= Rails.application.credentials.dig(:digitalocean_spaces, :bucket) %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
