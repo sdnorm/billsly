@@ -15,8 +15,20 @@
         <%= @completed_service.client_profile.client.full_name %>
       </div>
       <div class="mb-4">
+        <h5>Charge for service</h5>
+        <% if @completed_service.dollar_amount.nil? %>
+          n/a
+        <% else %>
+          <%= number_to_currency(@completed_service.dollar_amount) %>
+        <% end %>
+      </div>
+      <div class="mb-4">
         <h5>Reminder</h5>
-        <%= @completed_service.type_of_reminder %>
+        <% if @completed_service.type_of_reminder.nil? %>
+          n/a
+        <% else %>
+          <%= @completed_service.type_of_reminder %>
+        <% end %>
       </div>
     </div>
   </div>
