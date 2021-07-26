@@ -48,4 +48,10 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: t("must_be_an_admin")
     end
   end
+
+  def check_user_permission(thing)
+    if thing.user.id == current_user.id
+      redirect_to root_path, alert: "Not your #{thing.class}!"
+    end
+  end
 end

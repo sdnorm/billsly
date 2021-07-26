@@ -1,6 +1,9 @@
 class CompletedServicesController < ApplicationController
+  before_action :authenticate_user!
+  
   before_action :set_completed_service, only: [:show, :edit, :update, :destroy]
   before_action :set_account
+  before_action :verify_ownership, except: :index
 
   # GET /completed_services
   def index
@@ -92,5 +95,11 @@ class CompletedServicesController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def completed_service_params
     params.require(:completed_service).permit(:account_id, :client_profile_id)
+  end
+
+  def verify_ownership
+    if @completed_service.account_id != current_account.id
+      redirect_to root_path, alert: "Not your #{@completed_service.class}!"
+    end
   end
 end

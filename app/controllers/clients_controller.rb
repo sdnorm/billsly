@@ -1,11 +1,13 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
+  
   before_action :set_account
   before_action :set_client, only: [
     :show, :edit, :update, :destroy, :initial_reminder, 
     :message_index_update, :revert_to_account_default_message, :revert_to_last_specific_message,
     :work_complete
   ]
+  before_action :verify_ownership, except: :index
 
   def bulk_send_reminders
     params.permit(:client_ids)
@@ -147,5 +149,11 @@ class ClientsController < ApplicationController
         :_destroy
       ]
     )
+  end
+
+  def verify_ownership
+    if @client.account_id != current_account.id
+      redirect_to root_path, alert: "Not your #{@completed_service.class}!"
+    end
   end
 end
