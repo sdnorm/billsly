@@ -68,6 +68,9 @@
       <div class="col-span-6">
         <%= cp.label :reminder_message, class: "block text-sm font-medium text-gray-700" %>
         <%= cp.rich_text_area :reminder_message, class: "form-control" %>
+        <div class="text-sm leading-5 text-gray-500">
+          Add a custom message to be sent each time, or leave it blank and we'll send one for you.
+        </div>
       </div>
     <% end %>
   </div>
@@ -78,3 +81,5 @@
     <% end %>
   </div>
 <% end %>
+
+
