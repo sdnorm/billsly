@@ -4,6 +4,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  dollar_amount       :decimal(, )
+#  type_of_reminder    :bigint
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  account_id          :bigint
@@ -23,6 +24,12 @@ class CompletedService < ApplicationRecord
 
   before_save :get_dollar_amount
   after_create :send_reminder
+
+  enum type_of_reminder: {
+    text: 0,
+    email: 1,
+    both: 2
+  }
 
   def get_dollar_amount
     self.dollar_amount = self.client_profile.dollar_amount

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_24_032733) do
+ActiveRecord::Schema.define(version: 2021_07_26_040627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_032733) do
     t.string "city"
     t.string "state"
     t.string "zip_code"
+    t.bigint "preferred_contact_method"
     t.index ["client_id"], name: "index_client_profiles_on_client_id"
   end
 
@@ -189,6 +190,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_032733) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "dollar_amount"
+    t.bigint "type_of_reminder"
     t.index ["account_id"], name: "index_completed_services_on_account_id"
     t.index ["client_profile_id"], name: "index_completed_services_on_client_profile_id"
     t.index ["provided_service_id"], name: "index_completed_services_on_provided_service_id"

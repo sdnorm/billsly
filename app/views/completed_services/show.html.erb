@@ -1,18 +1,22 @@
 <div class="container mx-auto my-8 px-4">
   <div class="max-w-3xl mx-auto">
     <div class="flex justify-between items-center mb-4">
-      <h1 class="h3"><%= link_to "Completed Services", completed_services_path %> > Completed Service #<%= @completed_service.id %></h1>
+      <h1 class="h3"><%= link_to "Completed Services", completed_services_path %> > Completed Service</h1>
       <%= link_to t("edit"), edit_completed_service_path(@completed_service), class: "btn btn-link" %>
     </div>
 
     <div class="bg-white rounded shadow p-8">
       <div class="mb-4">
-        <h5>Account</h5>
-        <%= @completed_service.account %>
+        <h5>Date Completed</h5>
+        <%= @completed_service.created_at.strftime("%b %e, %Y") %>
       </div>
       <div class="mb-4">
-        <h5>Client profile</h5>
-        <%= @completed_service.client_profile %>
+        <h5>Client</h5>
+        <%= @completed_service.client_profile.client.full_name %>
+      </div>
+      <div class="mb-4">
+        <h5>Reminder</h5>
+        <%= @completed_service.type_of_reminder %>
       </div>
     </div>
   </div>

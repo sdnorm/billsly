@@ -4,6 +4,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  dollar_amount       :decimal(, )
+#  type_of_reminder    :bigint
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  account_id          :bigint

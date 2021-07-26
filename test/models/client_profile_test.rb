@@ -2,21 +2,22 @@
 #
 # Table name: client_profiles
 #
-#  id                     :bigint           not null, primary key
-#  address1               :string
-#  address2               :string
-#  city                   :string
-#  dollar_amount          :decimal(, )
-#  dollar_amount_in_cents :bigint
-#  last_reminder_message  :text
-#  payment_option         :bigint
-#  payment_options        :bigint           is an Array
-#  reminder_message       :text
-#  state                  :string
-#  zip_code               :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  client_id              :bigint           not null
+#  id                       :bigint           not null, primary key
+#  address1                 :string
+#  address2                 :string
+#  city                     :string
+#  dollar_amount            :decimal(, )
+#  dollar_amount_in_cents   :bigint
+#  last_reminder_message    :text
+#  payment_option           :bigint
+#  payment_options          :bigint           is an Array
+#  preferred_contact_method :bigint
+#  reminder_message         :text
+#  state                    :string
+#  zip_code                 :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  client_id                :bigint           not null
 #
 # Indexes
 #

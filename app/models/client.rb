@@ -30,7 +30,11 @@ class Client < ApplicationRecord
   has_many :clients_provided_services, dependent: :destroy 
   has_many :provided_services, through: :clients_provided_services
 
-  enum preferred_contact_method: [:text, :email, :both]#, default: :text
+  enum preferred_contact_method: {
+    text: 0, 
+    email: 1, 
+    both: 2
+  }#, default: :text
 
   include PgSearch::Model
   pg_search_scope :general_client_search, 
