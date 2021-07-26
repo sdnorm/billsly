@@ -6,7 +6,7 @@
 #  address1                 :string
 #  address2                 :string
 #  city                     :string
-#  dollar_amount            :decimal(, )
+#  dollar_amount            :decimal(10, 2)
 #  dollar_amount_in_cents   :bigint
 #  last_reminder_message    :text
 #  payment_option           :bigint

@@ -53,8 +53,17 @@
       </div>
       <div class="col-span-6 sm:col-span-3">
         <%= cp.label :dollar_amount, class: "block text-sm font-medium text-gray-700" %>
-        <%= cp.text_field :dollar_amount, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-        <div class="text-sm leading-5 text-gray-500">explanation for what dollar amount is</div>
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-gray-500 sm:text-sm">
+              $
+            </span>
+          </div>
+          <%= cp.text_field :dollar_amount, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 sm:text-sm border-gray-300 rounded-md", step: 0.01, placeholder: "0.00", "aria-describedby": "price-currency" %>
+        </div>
+        <div class="text-sm leading-5 text-gray-500">
+          Dollar amount the client will be charged (or how much client owes you per service). You can leave it blank if you're not sure yet.
+        </div>
       </div>
       <div class="col-span-6">
         <%= cp.label :reminder_message, class: "block text-sm font-medium text-gray-700" %>
