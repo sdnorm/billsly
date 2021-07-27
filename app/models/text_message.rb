@@ -11,11 +11,13 @@
 #  updated_at              :datetime         not null
 #  account_id              :bigint           not null
 #  client_id               :bigint           not null
+#  reminder_id             :bigint
 #
 # Indexes
 #
-#  index_text_messages_on_account_id  (account_id)
-#  index_text_messages_on_client_id   (client_id)
+#  index_text_messages_on_account_id   (account_id)
+#  index_text_messages_on_client_id    (client_id)
+#  index_text_messages_on_reminder_id  (reminder_id)
 #
 class TextMessage < ApplicationRecord
 
@@ -35,41 +37,32 @@ class TextMessage < ApplicationRecord
     @from = "#{Rails.application.credentials.dig(:twilio, :from_number)}" # Your Twilio number
   end
 
-  def send
-    self.update(body: text_body)
-    set_up_twilio# Your Twilio number
+  def send_message
+    text_body_content
+    # self.update(body: text_body_content)
+    set_up_twilio
     @client.messages.create(
       from: @from,
       to: self.recipient_number,
-      body: text_body
+      body: self.body
     )
   end
 
-  def text_body 
-    case self.type_of_message
-    when "single_job"
+  def text_body_content
+    case self.batch_or_single_service
+    when "single"
       single_job_text_message_body
     end
   end
 
   def single_job_text_message_body
-    if self.client.client_profile.amount.nil?
-      "Hey #{self.client.first_name}!\n
-      #{self.account.name} completed your service today. Please provide prompt payment via the links below.\n
-      \n
-      #{payment_links_for_text}
-      \n
-      Thanks!"
+    if self.client.client_profiles.first.dollar_amount.nil?
+      self.update(body: "Hey #{self.client.first_name}!\n#{self.account.name} completed your service today. Please provide prompt payment via the links below.\n
+      #{payment_links_for_text}\nThanks!")
     else
-      "Hey #{self.client.first_name}!\n
-      #{self.account.name} completed your service today. Please provide prompt payment via the links below.\n
-      \n
-      #{self.client.client_profile.amount}\n
-      \n
-      #{payment_links_for_text}
-      <payment link>\n
-      \n
-      Thanks!"
+      self.update(body: "Hey #{self.client.first_name}!\n#{self.account.name} completed your service today. Please provide prompt payment via the links below.\n
+      #{self.client.client_profiles.first.dollar_amount}\n
+      #{payment_links_for_text}\nThanks!")
     end
   end
 

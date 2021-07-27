@@ -44,9 +44,6 @@ class Reminder < ApplicationRecord
   end
 
   def single_service_text
-    puts " "
-    puts "22222222222"
-    puts " "
     text = TextMessage.new(
       recipient_number: self.client.phone_number,
       account_id: self.account_id,
@@ -55,10 +52,6 @@ class Reminder < ApplicationRecord
       reminder_id: self.id
     )
     text.save!
-    puts " "
-    puts "here"
-    puts text.inspect
-    puts " "
     SingleCompletedServiceJob.perform_later(text)
   end
   

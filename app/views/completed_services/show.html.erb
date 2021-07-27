@@ -24,10 +24,10 @@
       </div>
       <div class="mb-4">
         <h5>Reminder</h5>
-        <% if @completed_service.type_of_reminder.nil? %>
+        <% if @completed_service.reminder.first.description.nil? %>
           n/a
         <% else %>
-          <%= @completed_service.type_of_reminder %>
+          <%= @completed_service.reminder.first.description%>
         <% end %>
       </div>
     </div>

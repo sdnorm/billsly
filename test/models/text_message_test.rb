@@ -11,11 +11,13 @@
 #  updated_at              :datetime         not null
 #  account_id              :bigint           not null
 #  client_id               :bigint           not null
+#  reminder_id             :bigint
 #
 # Indexes
 #
-#  index_text_messages_on_account_id  (account_id)
-#  index_text_messages_on_client_id   (client_id)
+#  index_text_messages_on_account_id   (account_id)
+#  index_text_messages_on_client_id    (client_id)
+#  index_text_messages_on_reminder_id  (reminder_id)
 #
 require "test_helper"
 

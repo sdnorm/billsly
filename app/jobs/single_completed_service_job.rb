@@ -2,7 +2,7 @@ class SingleCompletedServiceJob < ApplicationJob
   queue_as :default
 
   def perform(message)
-    message.send
+    message.send_message
   end
 
 end
