@@ -22,30 +22,32 @@ end
 puts " "
 puts "clients"
 100.times do
+  account_id = Account.pluck(:id).shuffle.first
   Client.create!(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.first_name,
     phone_number: Faker::PhoneNumber.cell_phone_in_e164,
+    account_id: account_id
   )
 end
 
-puts " "
-puts "Account Clients"
-Client.all.each do |c|
-  account_id = Account.pluck(:id).shuffle.first
-  AccountClient.create(
-    account_id: account_id,
-    client_id: c.id
-  )
-end
+# puts " "
+# puts "Account Clients"
+# Client.all.each do |c|
+#   account_id = Account.pluck(:id).shuffle.first
+#   AccountClient.create(
+#     account_id: account_id,
+#     client_id: c.id
+#   )
+# end
 
 puts " "
 puts "client profiles"
 Client.all.each do |c|
   ClientProfile.create!(
     client_id: c.id,
-    account_id: c.accounts.first.id,
+    account_id: c.account_id,
     reminder_message: Faker::TvShows::MichaelScott.quote
   )
 end
