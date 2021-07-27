@@ -16,11 +16,16 @@
 #  zip_code                 :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  account_id               :bigint
+#
+# Indexes
+#
+#  index_clients_on_account_id  (account_id)
 #
 class Client < ApplicationRecord
 
-  has_many :account_clients, dependent: :destroy
-  has_many :accounts, through: :account_clients
+  # has_many :account_clients, dependent: :destroy
+  # has_many :accounts, through: :account_clients
 
   has_many :reminders
 
@@ -29,6 +34,8 @@ class Client < ApplicationRecord
 
   has_many :clients_provided_services, dependent: :destroy 
   has_many :provided_services, through: :clients_provided_services
+
+  belongs_to :account
 
   enum preferred_contact_method: {
     text: 0, 

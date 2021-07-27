@@ -83,7 +83,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     # @client.account_id = current_account.id
     if @client.save
-      AccountClient.create!(client_id: @client.id, account_id: current_account.id)
+      @client.update(account_id: current_account.id)
       # ClientProfile.create!(client_id: @client.id)
       redirect_to clients_path, notice: "Client was successfully created."
     else
@@ -152,8 +152,6 @@ class ClientsController < ApplicationController
   end
 
   def verify_ownership
-    if @client.account_id != current_account.id
-      redirect_to root_path, alert: "Not your #{@completed_service.class}!"
-    end
+    check_user_permission(@client)
   end
 end

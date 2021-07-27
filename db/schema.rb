@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_26_200805) do
+ActiveRecord::Schema.define(version: 2021_07_26_212950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -172,6 +172,8 @@ ActiveRecord::Schema.define(version: 2021_07_26_200805) do
     t.string "zip_code"
     t.boolean "terms_and_conditions"
     t.bigint "preferred_contact_method"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_clients_on_account_id"
   end
 
   create_table "clients_provided_services", force: :cascade do |t|

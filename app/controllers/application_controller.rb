@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_permission(thing)
-    if thing.user.id == current_user.id
+    if thing.account_id != current_account.id
       redirect_to root_path, alert: "Not your #{thing.class}!"
     end
   end
