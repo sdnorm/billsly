@@ -8,12 +8,20 @@ class AccountDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    owner: Field::BelongsTo.with_options(class_name: "User"),
-    charges: Field::HasMany.with_options(class_name: "Pay::Charge"),
-    subscriptions: Field::HasMany.with_options(class_name: "Pay::Subscription"),
+    charges: Field::HasMany,
+    subscriptions: Field::HasMany,
+    owner: Field::BelongsTo,
+    account_invitations: Field::HasMany,
     account_users: Field::HasMany,
+    notifications: Field::HasMany,
     users: Field::HasMany,
-    avatar: Field::ActiveStorage,
+    clients: Field::HasMany,
+    sp_payment_links: Field::HasMany,
+    reminders: Field::HasMany,
+    completed_services: Field::HasMany,
+    avatar_attachment: Field::HasOne,
+    avatar_blob: Field::HasOne,
+    default_reminder_message: Field::RichText,
     id: Field::Number,
     name: Field::String,
     personal: Field::Boolean,
@@ -27,10 +35,14 @@ class AccountDashboard < Administrate::BaseDashboard
     card_exp_month: Field::String,
     card_exp_year: Field::String,
     extra_billing_info: Field::Text,
+    domain: Field::String,
+    subdomain: Field::String,
+    default_reminder_message: Field::Text,
+    slug: Field::String,
     plan: Field::String,
     quantity: Field::Number,
     card_token: Field::String,
-    sp_payment_link: Field::HasMany
+    pay_fake_processor_allowed: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -38,48 +50,102 @@ class AccountDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :owner,
-    :name,
-    :personal,
-    :processor,
-    :account_users
+  COLLECTION_ATTRIBUTES = %i[
+  charges
+  subscriptions
+  owner
+  account_invitations
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :owner,
-    :charges,
-    :subscriptions,
-    :account_users,
-    :users,
-    :avatar,
-    :name,
-    :personal,
-    :created_at,
-    :updated_at,
-    :processor,
-    :processor_id,
-    :trial_ends_at,
-    :card_type,
-    :card_last4,
-    :card_exp_month,
-    :card_exp_year,
-    :extra_billing_info,
-    :quantity
+  SHOW_PAGE_ATTRIBUTES = %i[
+  charges
+  subscriptions
+  owner
+  account_invitations
+  account_users
+  notifications
+  users
+  clients
+  sp_payment_links
+  reminders
+  completed_services
+  avatar_attachment
+  avatar_blob
+  default_reminder_message
+  id
+  name
+  personal
+  created_at
+  updated_at
+  processor
+  processor_id
+  trial_ends_at
+  card_type
+  card_last4
+  card_exp_month
+  card_exp_year
+  extra_billing_info
+  domain
+  subdomain
+  default_reminder_message
+  slug
+  plan
+  quantity
+  card_token
+  pay_fake_processor_allowed
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :owner,
-    :name,
-    :personal,
-    :extra_billing_info
+  FORM_ATTRIBUTES = %i[
+  charges
+  subscriptions
+  owner
+  account_invitations
+  account_users
+  notifications
+  users
+  clients
+  sp_payment_links
+  reminders
+  completed_services
+  avatar_attachment
+  avatar_blob
+  default_reminder_message
+  name
+  personal
+  processor
+  processor_id
+  trial_ends_at
+  card_type
+  card_last4
+  card_exp_month
+  card_exp_year
+  extra_billing_info
+  domain
+  subdomain
+  default_reminder_message
+  slug
+  plan
+  quantity
+  card_token
+  pay_fake_processor_allowed
   ].freeze
+
+  # COLLECTION_FILTERS
+  # a hash that defines filters that can be used while searching via the search
+  # field of the dashboard.
+  #
+  # For example to add an option to search for open resources by typing "open:"
+  # in the search field:
+  #
+  #   COLLECTION_FILTERS = {
+  #     open: ->(resources) { resources.where(open: true) }
+  #   }.freeze
+  COLLECTION_FILTERS = {}.freeze
 
   # Overwrite this method to customize how accounts are displayed
   # across all pages of the admin dashboard.

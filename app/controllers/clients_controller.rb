@@ -135,6 +135,7 @@ class ClientsController < ApplicationController
       :last_name, 
       :email, 
       :phone_number,
+      :preferred_contact_method,
       client_profiles_attributes: [
         :id, 
         :account_id,

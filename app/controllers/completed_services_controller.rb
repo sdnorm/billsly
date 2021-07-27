@@ -4,7 +4,7 @@ class CompletedServicesController < ApplicationController
   before_action :set_completed_service, only: [:show, :edit, :update, :destroy]
   before_action :set_account
 
-  before_action :verify_ownership, except: :index
+  before_action :verify_ownership, except: [:index, :create, :create_from_dashboard, :create_from_client_show]
 
   # GET /completed_services
   def index

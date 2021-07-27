@@ -2,15 +2,15 @@
 #
 # Table name: text_messages
 #
-#  id                     :bigint           not null, primary key
-#  body                   :text
-#  recipient_number       :string
-#  successfully_delivered :boolean
-#  type_of_message        :bigint           is an Array
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  account_id             :bigint           not null
-#  client_id              :bigint           not null
+#  id                      :bigint           not null, primary key
+#  batch_or_single_service :bigint
+#  body                    :text
+#  recipient_number        :string
+#  successfully_delivered  :boolean
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  account_id              :bigint           not null
+#  client_id               :bigint           not null
 #
 # Indexes
 #
@@ -19,9 +19,13 @@
 #
 class TextMessage < ApplicationRecord
 
-  enum type_of_message: {
-    single_job: 0,
-    batched_jobs: 1
+  belongs_to :account
+  belongs_to :client
+  belongs_to :reminder
+
+  enum batch_or_single_service: {
+    single: 0,
+    batched: 1
   }
 
   def set_up_twilio
@@ -32,6 +36,7 @@ class TextMessage < ApplicationRecord
   end
 
   def send
+    self.update(body: text_body)
     set_up_twilio# Your Twilio number
     @client.messages.create(
       from: @from,

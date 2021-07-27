@@ -22,35 +22,55 @@ class CompletedService < ApplicationRecord
   belongs_to :account 
   belongs_to :client_profile
 
+  has_many :reminder
+
   before_save :get_dollar_amount
   after_create :send_reminder
-
-  enum type_of_reminder: {
-    text: 0,
-    email: 1,
-    both: 2
-  }
 
   def get_dollar_amount
     self.dollar_amount = self.client_profile.dollar_amount
   end
 
   def send_reminder
-    reminder = Reminder.create(
-      account_id: self.account.id,
-      client_id: self.client_profile.client.id,
-      completed_service_id: self.id
-    )
     case self.client_profile.client.preferred_contact_method
     when "text"
-      # puts "yes"
+      reminder = Reminder.create(
+        account_id: self.account.id,
+        client_id: self.client_profile.client.id,
+        completed_service_id: self.id,
+        description: "text"
+      )
       reminder.single_service_text
     when "email"
+      reminder = Reminder.create(
+        account_id: self.account.id,
+        client_id: self.client_profile.client.id,
+        completed_service_id: self.id,
+        description: "email"
+      )
       reminder.single_service_email
     when "both"
-      reminder.single_service_text
-      reminder.single_service_email
+      reminder1 = Reminder.create(
+        account_id: self.account.id,
+        client_id: self.client_profile.client.id,
+        completed_service_id: self.id,
+        description: "text"
+      )
+      reminder1.single_service_text
+      reminder2 = Reminder.create(
+        account_id: self.account.id,
+        client_id: self.client_profile.client.id,
+        completed_service_id: self.id,
+        description: "email"
+      )
+      reminder2.single_service_email
     else
+      reminder = Reminder.create(
+      account_id: self.account.id,
+      client_id: self.client_profile.client.id,
+      completed_service_id: self.id,
+      description: "text"
+    )
       reminder.single_service_text
     end
   end

@@ -43,7 +43,7 @@
         <%= cp.label :zip_code, class: "block text-sm font-medium text-gray-700" %>
         <%= cp.text_field :zip_code, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
       </div>
-      <div class="col-span-6 sm:col-span-3">
+      <div class="col-span-6 sm:col-span-6 lg:col-span-2">
         <%= cp.label :payment_option, class: "block text-sm font-medium text-gray-700" %>
         <% if @payment_options.nil? %>
           <%= cp.select :payment_option, {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
@@ -51,7 +51,23 @@
           <%= cp.select :payment_option, options_for_select(@payment_options, [client.client_profiles.first.payment_option]), {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %> 
         <% end %>
       </div>
-      <div class="col-span-6 sm:col-span-3">
+      <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+        <%= form.label :preferred_contact_method, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.hidden_field :preferred_contact_method %>
+        <div class="control" data-controller="radio-selection-toggle">
+          <label class="radio">
+            <%= form.radio_button("preferred_contact_method", "text") %>
+            text
+          </label>
+        </div>
+        <div class="control" data-controller="radio-selection-toggle">
+          <label class="radio">
+            <%= form.radio_button("preferred_contact_method", "email") %>
+            email
+          </label>
+        </div>
+      </div>
+      <div class="col-span-4 sm:col-span-3">
         <%= cp.label :dollar_amount, class: "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 relative rounded-md shadow-sm">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -81,5 +97,3 @@
     <% end %>
   </div>
 <% end %>
-
-

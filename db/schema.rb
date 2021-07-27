@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_26_212950) do
+ActiveRecord::Schema.define(version: 2021_07_27_054038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -306,8 +306,11 @@ ActiveRecord::Schema.define(version: 2021_07_26_212950) do
     t.bigint "client_id", null: false
     t.boolean "read"
     t.boolean "opened", default: false
+    t.bigint "completed_service_id"
+    t.bigint "description"
     t.index ["account_id"], name: "index_reminders_on_account_id"
     t.index ["client_id"], name: "index_reminders_on_client_id"
+    t.index ["completed_service_id"], name: "index_reminders_on_completed_service_id"
   end
 
   create_table "sp_payment_links", force: :cascade do |t|
@@ -336,7 +339,7 @@ ActiveRecord::Schema.define(version: 2021_07_26_212950) do
     t.boolean "successfully_delivered"
     t.bigint "client_id", null: false
     t.bigint "account_id", null: false
-    t.bigint "type_of_message", array: true
+    t.bigint "batch_or_single_service"
     t.index ["account_id"], name: "index_text_messages_on_account_id"
     t.index ["client_id"], name: "index_text_messages_on_client_id"
   end

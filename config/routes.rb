@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # Administrate
   authenticated :user, lambda { |u| u.admin? } do
     namespace :admin do
+      resources :reminders
       resources :completed_services
       resources :api_tokens
       resources :account_clients

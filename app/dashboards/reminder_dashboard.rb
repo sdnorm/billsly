@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class CompletedServiceDashboard < Administrate::BaseDashboard
+class ReminderDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,14 +9,14 @@ class CompletedServiceDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     account: Field::BelongsTo,
-    client_profile: Field::BelongsTo,
-    reminder: Field::HasOne,
+    client: Field::BelongsTo,
+    completed_service: Field::BelongsTo,
     id: Field::Number,
-    provided_service_id: Field::Number,
+    message: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    dollar_amount: Field::String.with_options(searchable: false),
-    type_of_reminder: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
+    read: Field::Boolean,
+    opened: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -26,8 +26,8 @@ class CompletedServiceDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
   account
-  client_profile
-  reminder
+  client
+  completed_service
   id
   ].freeze
 
@@ -35,14 +35,14 @@ class CompletedServiceDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
   account
-  client_profile
-  reminder
+  client
+  completed_service
   id
-  provided_service_id
+  message
   created_at
   updated_at
-  dollar_amount
-  type_of_reminder
+  read
+  opened
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -50,11 +50,11 @@ class CompletedServiceDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
   account
-  client_profile
-  reminder
-  provided_service_id
-  dollar_amount
-  type_of_reminder
+  client
+  completed_service
+  message
+  read
+  opened
   ].freeze
 
   # COLLECTION_FILTERS
@@ -69,10 +69,10 @@ class CompletedServiceDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how completed services are displayed
+  # Overwrite this method to customize how reminders are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(completed_service)
-  #   "CompletedService ##{completed_service.id}"
+  # def display_resource(reminder)
+  #   "Reminder ##{reminder.id}"
   # end
 end
