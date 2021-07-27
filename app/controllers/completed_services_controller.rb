@@ -3,6 +3,7 @@ class CompletedServicesController < ApplicationController
   
   before_action :set_completed_service, only: [:show, :edit, :update, :destroy]
   before_action :set_account
+
   before_action :verify_ownership, except: :index
 
   # GET /completed_services
@@ -98,8 +99,6 @@ class CompletedServicesController < ApplicationController
   end
 
   def verify_ownership
-    if @completed_service.account_id != current_account.id
-      redirect_to root_path, alert: "Not your #{@completed_service.class}!"
-    end
+    check_user_permission(@completed_service)
   end
 end
