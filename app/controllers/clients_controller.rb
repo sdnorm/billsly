@@ -7,7 +7,7 @@ class ClientsController < ApplicationController
     :message_index_update, :revert_to_account_default_message, :revert_to_last_specific_message,
     :work_complete
   ]
-  before_action :verify_ownership, except: :index
+  before_action :verify_ownership, except: [:index, :new]
 
   def bulk_send_reminders
     params.permit(:client_ids)
