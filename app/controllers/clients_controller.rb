@@ -7,7 +7,9 @@ class ClientsController < ApplicationController
     :message_index_update, :revert_to_account_default_message, :revert_to_last_specific_message,
     :work_complete
   ]
-  before_action :verify_ownership, except: [:index, :new, :create]
+  before_action :verify_ownership, except: [
+    :index, :new, :create, :initial_reminder, :work_complete_index
+  ]
 
   def bulk_send_reminders
     params.permit(:client_ids)
@@ -81,10 +83,8 @@ class ClientsController < ApplicationController
   # POST /clients
   def create
     @client = Client.new(client_params)
-    # @client.account_id = current_account.id
+    @client.account_id = current_account.id
     if @client.save
-      @client.update(account_id: current_account.id)
-      # ClientProfile.create!(client_id: @client.id)
       redirect_to clients_path, notice: "Client was successfully created."
     else
       @payment_options = @account.sp_payment_links.pluck(:name, :id)
