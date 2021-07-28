@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :redirect_root_domain
+
   include SetCurrentRequestDetails
   include SetLocale
   include Jumpstart::Controller
@@ -18,6 +20,11 @@ class ApplicationController < ActionController::Base
 
   def set_account 
     @account = current_user.accounts.first
+  end
+
+  def redirect_root_domain
+    return unless request.host === 'billsly.co'
+    redirect_to("#{request.protocol}www.billsly.co#{request.fullpath}", status: 301)
   end
 
   protected
