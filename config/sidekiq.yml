@@ -22,6 +22,19 @@
 # you can override concurrency based on environment
 production:
   :concurrency: 25
+  :timeout: 8
+  :configure_client:
+    - url
+      - <%= ENV['REDIS_URL'] %>
+    - ssl_params
+      - verify_mode
+        - OpenSSL::SSL::VERIFY_NONE
+  :configure_server:
+    - url
+      - <%= ENV['REDIS_URL'] %>
+    - ssl_params
+      - verify_mode
+        - OpenSSL::SSL::VERIFY_NONE
   
 staging:
   :concurrency: 15
