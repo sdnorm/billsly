@@ -61,7 +61,7 @@ class TextMessage < ApplicationRecord
       #{payment_links_for_text}\nThanks!")
     else
       self.update(body: "Hey #{self.client.first_name}!\n#{self.account.name} completed your service today. Please provide prompt payment via the links below.\n
-      #{self.client.client_profiles.first.dollar_amount}\n
+      #{ActionController::Base.helpers.number_to_currency(self.client.client_profiles.first.dollar_amount)}\n
       #{payment_links_for_text}\nThanks!")
     end
   end
