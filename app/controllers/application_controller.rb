@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user_with_sign_up!
     unless user_signed_in?
       store_location_for(:user, request.fullpath)
-      redirect_to new_user_registration_path, alert: t("create_an_account_first")
+      redirect_to new_user_registration_path#, alert: t("create_an_account_first")
     end
   end
 
