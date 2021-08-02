@@ -52,6 +52,7 @@ class Account < ApplicationRecord
   has_many :sp_payment_links
   has_many :reminders
   has_many :completed_services
+  has_many :text_messages
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }
@@ -65,6 +66,35 @@ class Account < ApplicationRecord
   validates :name, presence: true
   validates :domain, exclusion: {in: RESERVED_DOMAINS, message: :reserved}
   validates :subdomain, exclusion: {in: RESERVED_SUBDOMAINS, message: :reserved}, format: {with: /\A[a-zA-Z0-9]+[a-zA-Z0-9\-_]*[a-zA-Z0-9]+\Z/, message: :format, allow_blank: true}
+
+  def current_month_text_message_count
+    self.text_messages.where(created_at: Time.now.beginning_of_month..(Time.now.end_of_month)).count
+  end
+
+  def met_basic_text_message_limit?
+    true if self.current_month_text_message_count >= 250
+  end
+
+  def met_premium_text_message_limit?
+    true if self.current_month_text_message_count >= 500
+  end
+
+  def able_to_send_text?
+    case self.plan.name
+    when "basic"
+      if self.met_basic_text_message_limit?
+        false
+      else
+        true
+      end
+    when "premium"
+      if self.met_premium_text_message_limit?
+        false
+      else
+        true
+      end
+    end
+  end
 
   def email
     account_users.includes(:user).order(created_at: :asc).first.user.email

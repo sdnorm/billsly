@@ -8,7 +8,6 @@ class ClientProfileDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    account: Field::BelongsTo,
     client: Field::BelongsTo,
     reminder_message: Field::RichText,
     id: Field::Number,
@@ -17,6 +16,15 @@ class ClientProfileDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     payment_options: Field::Number,
     payment_option: Field::Number,
+    last_reminder_message: Field::Text,
+    dollar_amount_in_cents: Field::Number,
+    dollar_amount: Field::String.with_options(searchable: false),
+    address1: Field::String,
+    address2: Field::String,
+    city: Field::String,
+    state: Field::String,
+    zip_code: Field::String,
+    preferred_contact_method: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,16 +33,15 @@ class ClientProfileDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  account
   client
   reminder_message
   id
+  reminder_message
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  account
   client
   reminder_message
   id
@@ -43,18 +50,35 @@ class ClientProfileDashboard < Administrate::BaseDashboard
   updated_at
   payment_options
   payment_option
+  last_reminder_message
+  dollar_amount_in_cents
+  dollar_amount
+  address1
+  address2
+  city
+  state
+  zip_code
+  preferred_contact_method
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  account
   client
   reminder_message
   reminder_message
   payment_options
   payment_option
+  last_reminder_message
+  dollar_amount_in_cents
+  dollar_amount
+  address1
+  address2
+  city
+  state
+  zip_code
+  preferred_contact_method
   ].freeze
 
   # COLLECTION_FILTERS

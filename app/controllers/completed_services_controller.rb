@@ -4,7 +4,7 @@ class CompletedServicesController < ApplicationController
   before_action :set_completed_service, only: [:show, :edit, :update, :destroy]
   before_action :set_account
 
-  before_action :verify_ownership, except: [:index, :create, :create_from_dashboard, :create_from_client_show]
+  before_action :verify_ownership, except: [:index, :create, :create_from_dashboard, :create_from_client_show, :test_reminder]
 
   # GET /completed_services
   def index
@@ -56,7 +56,11 @@ class CompletedServicesController < ApplicationController
   def create_from_client_show
     @completed_service = CompletedService.new(completed_service_params)
     if @completed_service.save
-      redirect_to client_path(@completed_service.client_profile.client), notice: "This job was marked as completed."
+      if @completed_service.account.able_to_send_text?
+        redirect_to client_path(@completed_service.client_profile.client), notice: "This job was marked as completed."
+      else
+        redirect_to client_path(@completed_service.client_profile.client), alert: "You are maxed out on texts message for the month. We sent a reminder via email though! Upgrade #{} to get more texts abilities."
+      end
     else
       redirect_to client_path(@completed_service.client_profile.client), alert: "Something happened and the service was not marked complete! Please try again."
     end

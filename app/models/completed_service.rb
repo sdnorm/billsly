@@ -34,13 +34,23 @@ class CompletedService < ApplicationRecord
   def send_reminder
     case self.client_profile.client.preferred_contact_method
     when "text"
-      reminder = Reminder.create(
-        account_id: self.account.id,
-        client_id: self.client_profile.client.id,
-        completed_service_id: self.id,
-        description: "text"
-      )
-      reminder.single_service_text
+      if self.account.able_to_send_text?
+        reminder = Reminder.create(
+          account_id: self.account.id,
+          client_id: self.client_profile.client.id,
+          completed_service_id: self.id,
+          description: "text"
+        )
+        reminder.single_service_text
+      else
+        reminder = Reminder.create(
+          account_id: self.account.id,
+          client_id: self.client_profile.client.id,
+          completed_service_id: self.id,
+          description: "email"
+        )
+        reminder.single_service_email
+      end
     when "email"
       reminder = Reminder.create(
         account_id: self.account.id,
