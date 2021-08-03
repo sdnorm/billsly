@@ -18,7 +18,9 @@
         </div>
       <% end %>
       <%= link_to new_client_path, class: "btn btn-gray" do %>
-        <span class="mr-1"><i class="fas fa-plus"></i></span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
         Client
       <% end %>
     </div>
@@ -47,7 +49,9 @@
         </div>
       <% end %>
       <%= link_to new_client_path, class: "btn btn-gray-sm" do %>
-        <span class="mr-1"><i class="fas fa-plus"></i></span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
         Client
       <% end %>
     </div>
@@ -120,6 +124,19 @@
       </div>
     <% end %>
 
+  <% elsif current_account.test_email_reminders.count > 0 %>
+
+    <div class="alert alert-success mb-6" role="alert">
+      <div class="flex items-start justify-start">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" role="img" aria-labelledby="aahi51ihsblrsw6bq1l94sy7q89i5w8e" class="fill-current icon mr-4 mt-1 flex-no-shrink"><title id="aahi51ihsblrsw6bq1l94sy7q89i5w8e">Icons/checkmark</title><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"></path></svg>
+
+        <div>
+          <h4 class="font-black text-sm uppercase tracking">You are on your way!</h4>
+          <p class="leading-normal">Add a customer using the button above.</p>
+        </div>
+      </div>
+    </div>
+
   <% else %>
     <table class="min-w-full">
       <thead>
@@ -133,7 +150,22 @@
         </tr>
       </thead>
       <tbody class="bg-white">
-        <tr class="hover:bg-gray-100" data-controller="tooltip" data-tippy-content="This is an example client. The reminder will be sent to your email." data-tippy-delay="0" data-tippy-arrow="true" data-tippy-size="regular" data-tippy-animation="fade">
+        <div class="alert alert-info mb-6" role="alert">
+          <div class="flex items-start justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" role="img" aria-labelledby="arnvv92929xota768v8wdsei3v54lhdq" class="fill-current bg-icon mr-4 mt-1 flex-no-shrink">
+              <title id="arnvv92929xota768v8wdsei3v54lhdq">Icons/conversation</title>
+              <path d="M17 11v3l-3-3H8a2 2 0 0 1-2-2V2c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-1zm-3 2v2a2 2 0 0 1-2 2H6l-3 3v-3H2a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h2v3a4 4 0 0 0 4 4h6z"></path>
+            </svg>
+
+            <div>
+              <h4 class="font-black text-sm uppercase tracking">Getting Started</h4>
+              <p class="leading-normal">
+                Mark the example client (its actually you!) complete and we'll send an example reminder so you can aee what your clients will see.
+              </p>
+            </div>
+          </div>
+        </div>
+        <tr class="hover:bg-gray-100">
           <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
             <div class="flex items-center">
               <div class="ml-4">
@@ -148,7 +180,7 @@
               <%= form.submit "Complete", class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
             <% end %>
             <div class="text-xs leading-5 text-gray-500">
-              Date of last send reminder goes here
+              
             </div>
           </td>
         </tr>

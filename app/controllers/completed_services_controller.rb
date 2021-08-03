@@ -82,7 +82,7 @@ class CompletedServicesController < ApplicationController
   end
 
   def test_reminder
-    test_email = TestEmailReminder.new(user_id: current_user.id)
+    test_email = TestEmailReminder.new(account_id: current_account.id, user_id: current_user.id)
     if test_email.save
       redirect_to clients_path, notice: "Test email successfully sent."
     else

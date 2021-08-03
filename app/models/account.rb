@@ -53,6 +53,7 @@ class Account < ApplicationRecord
   has_many :reminders
   has_many :completed_services
   has_many :text_messages
+  has_many :test_email_reminders
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }
