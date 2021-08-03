@@ -1,4 +1,11 @@
 <%- if devise_mapping.omniauthable? && %w{ registrations sessions }.include?(controller_name) %>
+
+  <% if %w{ sessions }.include?(controller_name) %>
+    <p class="mb-3"><i>or sign in with</i></p>
+  <% else %>
+    <p class="mb-3"><i>or sign up with</i></p>
+  <% end %>
+
   <div class="flex flex-wrap justify-center -mx-2">
     <%- resource_class.omniauth_providers.each do |provider| %>
       <%= button_to omniauth_authorize_path(:user, provider), class: "btn btn-#{provider} m-1", data: { turbo: false, disable_with: t(".redirecting") } do %>

@@ -164,7 +164,7 @@ en:
       title: "Dashboard"
 
   payments:
-    success: "Thanks for subscribing!"
+    success: "Thanks for joining Billsly!"
     show:
       successful: "Payment Successful"
       successful_description: "This payment was already successfully confirmed."
@@ -238,15 +238,15 @@ en:
       view: "View"
 
   subscriptions:
-    created: "Thanks for subscribing!"
+    created: "Thanks for joining Billsly!"
     resumed: "Your subscription has been resumed."
     info_updated: "Extra billing info saved sucessfully."
 
     new:
-      title: "Checkout"
+      title: "Enter your credit card to begin your free month!"
       payment_method: "Payment Method"
       change: "Change"
-      subscribe: "Subscribe"
+      subscribe: "Get Started"
       processing: "Processing..."
       help: "Need any help?"
       contact_html: "Don't hesitate to %{link}."
@@ -272,16 +272,16 @@ en:
     current_plan:
       title: "Current Plan"
       trial_ends: "Your trial ends in %{days}."
-      subscription_ends_html: "Your subscription ends <strong>%{date}</strong>"
-      subscription_pauses_html: "Your subscription pauses <strong>%{date}</strong>"
-      subscription_paused_html: "Your subscription is <strong>paused</strong>"
-      resume: "Resume Subscription"
+      subscription_ends_html: "Your plan ends <strong>%{date}</strong>"
+      subscription_pauses_html: "Your plan pauses <strong>%{date}</strong>"
+      subscription_paused_html: "Your plan is <strong>paused</strong>"
+      resume: "Resume PLan"
       resuming: "Resuming..."
-      resubscribe_html: "Your subscription has ended. Would you like to %{link}?"
+      resubscribe_html: "Your plan has ended. Would you like to %{link}?"
       resubscribe: "resubscribe"
       current_plan_html: "You are currently subscribed to the <strong>%{plan}</strong> plan."
       change_plan: "Change my plan"
-      not_subscribed: "You are not currently subscribed."
+      not_subscribed: "You are not currently subscribed to a plan."
       choose_plan: "Choose a plan"
       payment_method: "Payment Method"
       no_card: "You have no card on file."
@@ -298,18 +298,18 @@ en:
       receipt: "Receipt"
       view: "View"
       pause:
-        title: "Pause Your Subscription"
+        title: "Pause Your Plan"
         description: "You can pause your subscription and resume at a later time."
         note: "The pause takes effect on the first day of your next billing cycle. You will not be charged while your account is paused."
-        button: "Pause Subscription"
+        button: "Pause Plan"
         pausing: "Pausing..."
     cancel:
-      title: "Cancel Your Subscription"
+      title: "Cancel Your Plan"
       description: "You can cancel anytime, but you'll lose access to %{product}."
       help_html: "Need to talk to someone? %{link} -- we'd love to help."
       contact_us: "Contact us"
       subject: "Question about %{product}"
-      button: "Cancel Subscription"
+      button: "Cancel Plan"
       cancelling: "Cancelling..."
 
     forms:
