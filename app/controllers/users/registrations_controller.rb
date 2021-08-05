@@ -1,6 +1,13 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   invisible_captcha only: :create
 
+  def create
+    super
+    if @user.persisted?
+      UserMailer.new_registration(@user).deliver_now
+    end
+  end
+
   protected
 
   def build_resource(hash = {})

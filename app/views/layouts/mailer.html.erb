@@ -78,6 +78,10 @@
     font-weight: normal;
     text-decoration: underline;
   }
+
+  .footer {
+    font-size: smaller;
+  }
   </style>
 </head>
 
@@ -125,14 +129,13 @@
                         </tr>
                         <tr>
                           <td valign="middle" class="bodyContent">
-                            <div>
+                            <div class="footer">
                               &nbsp;
                               <%= link_to t(".view_in_browser"), "#", target: :_blank %>
-                              |
-                              <%= link_to t(".unsubscribe"), "#", target: :_blank %>
-                              |
-                              <%= link_to t(".preferences"), "#", target: :_blank %>
                               &nbsp;
+                            </div>
+                            <div class="module" data-muid="4e838cf3-9892-4a6d-94d6-170e474d21e5" data-role="module-unsubscribe" data-type="unsubscribe" role="module" style="color:#444444; font-size:12px; line-height:20px; padding:16px 16px 16px 16px;">
+                              <p style="font-size:12px; line-height:20px;"><a class="Unsubscribe--unsubscribeLink" href="{{{unsubscribe}}}" style="color:lightgray;" target="_blank">Unsubscribe</a> - <a class="Unsubscribe--unsubscribePreferences" href="{{{unsubscribe_preferences}}}" style="color:lightgray;" target="_blank">Unsubscribe Preferences</a></p>
                             </div>
                           </td>
                         </tr>
