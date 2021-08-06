@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_045411) do
+ActiveRecord::Schema.define(version: 2021_08_06_052208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_08_06_045411) do
     t.text "default_reminder_message"
     t.string "slug"
     t.string "from_referral"
+    t.bigint "referrals_counted"
     t.index ["owner_id"], name: "index_accounts_on_owner_id"
     t.index ["slug"], name: "index_accounts_on_slug", unique: true
   end

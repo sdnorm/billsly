@@ -14,6 +14,7 @@
 #  name                     :string           not null
 #  personal                 :boolean          default(FALSE)
 #  processor                :string
+#  referrals_counted        :bigint
 #  slug                     :string
 #  subdomain                :string
 #  trial_ends_at            :datetime

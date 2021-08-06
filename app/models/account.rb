@@ -14,6 +14,7 @@
 #  name                     :string           not null
 #  personal                 :boolean          default(FALSE)
 #  processor                :string
+#  referrals_counted        :bigint
 #  slug                     :string
 #  subdomain                :string
 #  trial_ends_at            :datetime
@@ -140,6 +141,20 @@ class Account < ApplicationRecord
     Account::OwnershipNotification.with(account: self, previous_owner: previous_owner.name).deliver_later(user)
   rescue
     false
+  end
+
+  def total_number_of_referrals
+    Account.where(from_referral: self.slug).count
+  end
+
+  def referrals_to_count_currently
+    total_number_of_referrals - self.referrals_counted
+  end
+
+  def update_referrals_counted
+    if referrals_to_count_currently >= 3
+      self.update(referrals_counted: self.referrals_counted += 3)
+    end
   end
 
   # Uncomment this to add generic trials (without a card or plan)
