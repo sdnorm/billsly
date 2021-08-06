@@ -38,29 +38,31 @@
 
   <body class="h-full font-sans antialiased font-normal leading-normal bg-gray-100">
 
-    <div data-controller="alert" class="bg-green-200 relative flex justify-between">
-      <div class="relative z-10 flex px-0">
-        
-      </div>
-      <div class="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
-        <div class="w-full sm:max-w-xs underline">
-          <%= link_to edit_user_registration_path do %>
-            <p class="text-sm font-medium text-green-800">
-              Want free months?! Click here.
-            </p>
-          <% end %>
+    <% if content_for?(:free_months)  %>
+      <div data-controller="alert" class="bg-green-200 relative flex justify-between">
+        <div class="relative z-10 flex px-0">
+          
+        </div>
+        <div class="relative z-0 flex px-2 flex items-center justify-center">
+          <div class="w-full underline ml-8 md:ml-0">
+            <%= link_to edit_user_registration_path do %>
+              <p class="text-sm font-medium text-green-800">
+                Want a free month? Click here.
+              </p>
+            <% end %>
+          </div>
+        </div>
+        <div class="relative lg:z-10 flex items-center">
+          <button data-action="alert#close" type="button" class="inline-flex rounded-md p-1 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
+            <span class="sr-only">Dismiss</span>
+            <!-- Heroicon name: solid/x -->
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
         </div>
       </div>
-      <div class="relative lg:z-10 flex items-center">
-        <button data-action="alert#close" type="button" class="inline-flex rounded-md p-1 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
-          <span class="sr-only">Dismiss</span>
-          <!-- Heroicon name: solid/x -->
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </button>
-      </div>
-    </div>
+    <% end %>
 
     <div class="main">
       <%= render partial: "shared/flash" %>

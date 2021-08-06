@@ -6,9 +6,9 @@
   <div class="w-full p-4 lg:w-3/4">
     <div class="p-4 bg-white border border-gray-300 rounded-lg lg:p-10 mb-4">
       <p>
-        Share this link to refer fellow service business operators and receive a <strong>FREE MONTH</strong> for every 3 that sign up for Billsly!
+        Share this link and receive a <strong>FREE MONTH</strong> for every 3 accounts that sign up for Billsly!
       </p>
-      <button class="btn btn-primary" data-controller="clipboard" data-clipboard-text="<%= new_user_registration_url(referral: current_account.slug) %>">Copy to Clipboard</button>
+      <button class="btn btn-primary" data-controller="clipboard" data-clipboard-text="<%= new_user_registration_url(referral: current_account.slug) %>">Copy Link to Clipboard</button>
       <%= link_to new_user_registration_url(referral: current_account.slug) %>
     </div>
     <div class="p-4 bg-white border border-gray-300 rounded-lg lg:p-10">
