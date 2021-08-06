@@ -52,4 +52,30 @@ module ApplicationHelper
       error:   "bg-red-400 border-l-4 border-red-700 text-black",
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
+
+  # def default_meta_tags
+  #   {
+  #     site: 'Billsly.co',
+  #     title: 'Billsly',
+  #     reverse: true,
+  #     separator: '|',
+  #     description: 'Get paid on time... Every time.',
+  #     keywordsL 'service provider, lawn, pool, maid, home services, billing',
+  #     canonical: request.original_url,
+  #     noindex: !Rails.env.production?,
+  #     icon: [
+  #       # should be logo or favicon things
+  #       { href: image_url('guy_phone_card.jpg') },
+  #       { href: image_url('guy_phone_card.jpg'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' }
+  #     ],
+  #     og: {
+  #       site_name: 'Billsly.co',
+  #       title: 'Billsly',
+  #       description: 'Get paid on time... Every time.',
+  #       type: 'website',
+  #       url: request.original_url,
+  #       image: image_url('guy_phone_card.jpg')
+  #     }
+  #   }
+  # end
 end
