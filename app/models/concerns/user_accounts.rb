@@ -24,7 +24,7 @@ module UserAccounts
     return unless name.present?
     return accounts.first if accounts.any?
 
-    account = accounts.new(owner: self, name: name, personal: Jumpstart.config.personal_accounts)
+    account = accounts.new(owner: self, name: name, personal: Jumpstart.config.personal_accounts, from_referral: from_referral)
     account.account_users.new(user: self, admin: true)
     account.save!
     account

@@ -10,6 +10,7 @@
 #  default_reminder_message :text
 #  domain                   :string
 #  extra_billing_info       :text
+#  from_referral            :string
 #  name                     :string           not null
 #  personal                 :boolean          default(FALSE)
 #  processor                :string
