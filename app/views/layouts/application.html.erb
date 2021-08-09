@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html class="h-full antialiased" lang="<%= I18n.locale %>">
   <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KNV6REJCXJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KNV6REJCXJ');
+    </script>
+
     <title>
       <% if content_for?(:title) %>
         <%= yield :title %> |
@@ -26,8 +35,6 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <%= yield :head %>
-    <!-- stonly-widget - copy into the head -->
-    <!-- stonly-widget - copy into the head -->
   </head>
 
   <body class="h-full font-sans antialiased font-normal leading-normal bg-gray-100">
