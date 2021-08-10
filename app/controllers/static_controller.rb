@@ -15,4 +15,8 @@ class StaticController < ApplicationController
 
   def privacy
   end
+
+  def features
+    @disable_nav = true
+  end
 end
