@@ -7,6 +7,7 @@ class StaticController < ApplicationController
   end
 
   def pricing
+    @disable_nav = true
     redirect_to root_path, alert: t(".no_plans") unless Plan.without_free.exists?
   end
 
