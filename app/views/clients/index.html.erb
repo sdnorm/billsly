@@ -5,30 +5,6 @@
 <% if current_account.subscribed? %>
 
   <div class="container mx-auto mb-8 mt-4 sm:px-2 md:px-4">
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <div class="rounded-md bg-blue-50 px-4 py-1 border-2 border-blue-600 mb-4 mx-2 md:mx-0">
-      <div class="flex items-center">
-        <div class="flex-shrink-0">
-          <!-- Heroicon name: solid/information-circle -->
-          <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <div class="ml-3 flex-1 md:flex md:justify-between items-center">
-          <p class="text-sm text-blue-700">
-            Clients can enter their own information!
-            <button class="btn btn-small btn-primary hidden md:inline ml-2" data-controller="clipboard" data-clipboard-text="<%= new_user_registration_url(referral: current_account.slug) %>">Copy Link</button>
-          </p>
-          <button class="mt-1 btn btn-small btn-primary md:hidden" data-controller="clipboard" data-clipboard-text="<%= new_client_sign_up_link_url(current_account.slug) %>">Copy Link</button>
-          <p class="mt-1 text-sm md:mt-0 md:ml-6">
-            <%= link_to new_client_sign_up_link_path(current_account.slug), target: "_blank", class: "whitespace-nowrap font-medium text-blue-700 hover:text-blue-600" do %>
-              See form <span aria-hidden="true">&rarr;</span>
-            <% end %>
-          </p>
-        </div>
-      </div>
-    </div>
-
     <div class="hidden md:flex justify-between items-center mb-4">
       <h1 class="h3">Clients</h1>
       <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0 px-1">
@@ -47,12 +23,55 @@
             </button>
           </div>
         <% end %>
-        <%= link_to new_client_path, class: "btn btn-gray" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
-          Client
-        <% end %>
+        
+        <div data-controller="modal" data-modal-disable-backdrop="true" class="inline-block text-sm p-2 leading-none rounded no-underline text-gray mt-4 lg:mt-0">
+          <div class="relative" data-controller="dropdown">
+            <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
+              <span class="btn btn-gray hover:text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Client
+              </span>
+            </div>
+            <div data-dropdown-target="menu" class="absolute right-0 mt-2 hidden">
+              <div class="bg-white shadow rounded border overflow-hidden">
+                <button class="no-underline px-3 block py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap" data-action="click->modal#open click->dropdown#toggle">
+                  Have the client do it
+                </button>
+                <%= link_to 'Manually', new_client_path, data: {action: "click->dropdown#toggle"}, class: 'border-t no-underline block px-3 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+              </div>
+            </div>
+          </div>
+          <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+            <!-- Modal Inner Container -->
+            <div class="fixed top-0 left-0 w-full h-full relative">
+              <!-- Modal Card -->
+              <div class="w-screen h-screen bg-white">
+                <div class="flex flex-wrap justify-center items-start h-screen">
+                  <div class="w-2/3 m-auto">
+                    <h3 class="mb-4">Clients can enter their own information!</h3>
+                    <div class="ml-3 flex-1 md:flex md:justify-between items-start">
+                      <p class="text-sm text-blue-700">
+                        <button class="btn btn-small btn-primary mb-4" data-controller="clipboard" data-clipboard-text="<%= new_user_registration_url(referral: current_account.slug) %>">Copy Link</button>
+                      </p>
+                      <p class="mt-1 text-sm">
+                        <%= link_to new_client_sign_up_link_path(current_account.slug), target: "_blank", class: "whitespace-nowrap font-medium text-blue-700 hover:text-blue-600" do %>
+                          See form <span aria-hidden="true">&rarr;</span>
+                        <% end %>
+                      </p>
+                    </div>
+
+                    <div class="flex justify-end items-center flex-wrap mt-6">
+                      <button class="btn btn-danger" data-action="click->modal#close">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="md:hidden">
         <%= link_to t("shared.scaffold.new.title", model: "Client"), new_client_path, class: "btn btn-primary" %>
@@ -78,12 +97,53 @@
             </button>
           </div>
         <% end %>
-        <%= link_to new_client_path, class: "btn btn-gray-sm" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
-          Client
-        <% end %>
+        <div data-controller="modal" data-modal-disable-backdrop="true" class="inline-block text-sm p-2 leading-none rounded no-underline text-gray">
+          <div class="relative" data-controller="dropdown">
+            <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
+              <span class="btn btn-gray-sm hover:text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Client
+              </span>
+            </div>
+            <div data-dropdown-target="menu" class="absolute right-0 mt-1 hidden">
+              <div class="bg-white shadow rounded border overflow-hidden">
+                <button class="no-underline px-3 block py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap" data-action="click->modal#open click->dropdown#toggle">
+                  Have the client do it
+                </button>
+                <%= link_to 'Manually', new_client_path, data: {action: "click->dropdown#toggle"}, class: 'border-t no-underline block px-3 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+              </div>
+            </div>
+          </div>
+          <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+            <!-- Modal Inner Container -->
+            <div class="fixed top-0 left-0 w-full h-full relative">
+              <!-- Modal Card -->
+              <div class="w-screen h-screen bg-white">
+                <div class="flex flex-wrap justify-center items-start h-screen">
+                  <div class="w-2/3 m-auto">
+                    <h3 class="mb-4">Clients can enter their own information!</h3>
+                    <div class="ml-3 flex-1 md:flex md:justify-between items-start">
+                      <p class="text-sm text-blue-700">
+                        <button class="btn btn-small btn-primary mb-4" data-controller="clipboard" data-clipboard-text="<%= new_user_registration_url(referral: current_account.slug) %>">Copy Link</button>
+                      </p>
+                      <p class="mt-1 text-sm">
+                        <%= link_to new_client_sign_up_link_path(current_account.slug), target: "_blank", class: "whitespace-nowrap font-medium text-blue-700 hover:text-blue-600" do %>
+                          See form <span aria-hidden="true">&rarr;</span>
+                        <% end %>
+                      </p>
+                    </div>
+
+                    <div class="flex justify-end items-center flex-wrap mt-6">
+                      <button class="btn btn-danger" data-action="click->modal#close">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
