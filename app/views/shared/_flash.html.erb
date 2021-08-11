@@ -21,8 +21,6 @@
   <% end %>
 </div>
 
-<script>
-  window.setTimeout(
-    "document.getElementById('flash').style.display='none';", 3000
-  )
-</script>
+<% unless @skip_timer %>
+  <script> window.setTimeout('document.getElementById("flash").style.display="none";', 3000) </script>
+<% end %>

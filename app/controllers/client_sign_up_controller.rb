@@ -5,18 +5,19 @@ class ClientSignUpController < ApplicationController
   layout "client_sign_up"
 
   def index
+    @skip_timer = true
     @client = Client.new
     @client.client_profiles.build
   end
 
   def create
     @client = Client.new(client_params)
+    @client.account_id = @account.id
     if @client.save
-      AccountClient.create!(client_id: @client.id, account_id: @account.id)
-      ClientProfile.create!(client_id: @client.id, account_id: @account.id)
-      redirect_to root_path, notice: "Your sign up was successful. This is going to help #{@account.name} out a lot!"
+      # ClientProfile.create!(client_id: @client.id, account_id: @account.id)
+      redirect_to new_client_sign_up_link_path(@account.slug), notice: "Your sign up was successful. This is going to help #{@account.name} out a lot!"
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -26,9 +27,16 @@ class ClientSignUpController < ApplicationController
     params.require(:client).permit(
       :first_name, 
       :last_name, 
-      :email, 
-      :phone_number, 
-      :terms_and_conditions
+      :email,  
+      :phone_number,
+      :terms_and_conditions,
+      client_profiles_attributes: [
+        :address1,
+        :address2,
+        :city,
+        :state,
+        :zip_code
+      ]
     )
   end
 

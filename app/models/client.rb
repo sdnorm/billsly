@@ -29,7 +29,7 @@ class Client < ApplicationRecord
 
   has_many :reminders
 
-  has_many :client_profiles, inverse_of: :client
+  has_many :client_profiles, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :client_profiles, allow_destroy: true#, reject_if: :all_blank, allow_destroy: true
 
   has_many :clients_provided_services, dependent: :destroy 
