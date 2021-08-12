@@ -1,0 +1,10 @@
+<div data-dropdown-target="menu" class="absolute right-0 mt-1 hidden">
+  <div class="bg-white shadow rounded border overflow-hidden">
+    <button class="no-underline px-3 block py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap" data-action="click->modal#open click->dropdown#toggle">
+      <%= render_svg "icons/duplicate", styles: "fill-current icon-sm inline", title: "search" %> Copy Share Link
+    </button>
+    <%= link_to new_client_path, data: {action: "click->dropdown#toggle"}, class: 'border-t no-underline block px-3 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' do %>
+      <%= render_svg "icons/add-outline", styles: "fill-current icon-sm inline", title: "search" %> Add
+    <% end %>
+  </div>
+</div>
