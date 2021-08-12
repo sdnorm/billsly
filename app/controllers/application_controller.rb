@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :redirect_root_domain
 
+  before_action :set_referral_account
+
   include SetCurrentRequestDetails
   include SetLocale
   include Jumpstart::Controller
@@ -20,6 +22,12 @@ class ApplicationController < ActionController::Base
 
   def set_account 
     @account = current_user.accounts.first
+  end
+
+  def set_referral_account
+    if params[:referral].present?
+      cookies[:referral] = params[:referral]
+    end
   end
 
   def redirect_root_domain
