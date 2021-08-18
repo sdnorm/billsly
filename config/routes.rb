@@ -144,6 +144,8 @@ Rails.application.routes.draw do
     get 'clients/:id/revert_to_account_default_message', to: 'clients#revert_to_account_default_message', as: :revert_to_account_default_message
     get 'clients/:id/revert_to_last_specific_message', to: 'clients#revert_to_last_specific_message', as: :revert_to_last_specific_message
     post 'test/reminder/email', to: 'completed_services#test_reminder', as: :email_reminder_test
+
+    # get 'how_to/get_payment_links', to: ''
   end
 
   get '/client_sign_up/:id/new', to: 'client_sign_up#index', as: :new_client_sign_up_link
