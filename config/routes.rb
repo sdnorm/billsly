@@ -1,6 +1,5 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-
   get '.well-known/apple-developer-merchantid-domain-association', to: 'apple_pays#show', as: :apple_pay
   draw :turbo
 
@@ -145,7 +144,9 @@ Rails.application.routes.draw do
     get 'clients/:id/revert_to_last_specific_message', to: 'clients#revert_to_last_specific_message', as: :revert_to_last_specific_message
     post 'test/reminder/email', to: 'completed_services#test_reminder', as: :email_reminder_test
 
-    # get 'how_to/get_payment_links', to: ''
+    get 'how_to', to: 'how_to#index', as: :how_to
+    get 'how_to/get_venmo_link', to: 'how_to#get_venmo_link', as: :get_venmo_link
+    get 'how_to/get_paypal_link', to: 'how_to#get_paypal_link', as: :get_paypal_link
   end
 
   get '/client_sign_up/:id/new', to: 'client_sign_up#index', as: :new_client_sign_up_link
