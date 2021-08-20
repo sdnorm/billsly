@@ -1,4 +1,7 @@
 class StaticController < ApplicationController
+
+  before_action :cookie_consent
+
   def index
     @disable_nav = true
   end
@@ -20,4 +23,9 @@ class StaticController < ApplicationController
   def features
     @disable_nav = true
   end
+
+  def set_cookie_consent
+    cookies[:cookie_consent] = true
+  end
+
 end

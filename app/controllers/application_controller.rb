@@ -29,6 +29,14 @@ class ApplicationController < ActionController::Base
       cookies[:referral] = params[:referral]
     end
   end
+  
+  def cookie_consent
+    if cookies[:cookie_consent].present? 
+      @cookie_consent = true
+    else
+      @cookie_consent = false
+    end
+  end
 
   def redirect_root_domain
     return unless request.host === 'billsly.co'

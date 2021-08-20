@@ -372,3 +372,7 @@
     </div>
   </div>
 </div>
+
+<% unless @cookie_consent %>
+  <%= render partial: "cookie_consent" %>
+<% end %>

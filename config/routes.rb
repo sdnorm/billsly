@@ -152,6 +152,9 @@ Rails.application.routes.draw do
   get '/client_sign_up/:id/new', to: 'client_sign_up#index', as: :new_client_sign_up_link
   post '/client_sign_up/:id/new', to: 'client_sign_up#create', as: :client_sign_up_create
 
+  # cookie consent
+  post 'set_cookie_consent', to: 'static#set_cookie_consent', as: :set_cookie_consent
+
   # Public marketing homepage
   root to: "static#index"
 end
