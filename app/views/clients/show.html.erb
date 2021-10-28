@@ -1,11 +1,11 @@
-<div class="container mx-auto my-4 px-4">
+<div class="container mx-auto my-2 px-2 md-px-4">
   <div class="max-w-5xl mx-auto">
-    <div class="flex justify-between items-center mb-4">
+    <div class="flex justify-between items-center mb-2">
       <h1 class="h3"><%= link_to "Clients", clients_path %> > <%= @client.full_name %></h1>
       <%= link_to t("edit"), edit_client_path(@client), class: "btn btn-link" %>
     </div>
 
-    <div class="my-2">
+    <div class="mb-3">
       <%= form_for CompletedService.new, url: create_from_client_show_path do |form| %>
         <%= form.hidden_field :account_id, value: current_account.id %>
         <%= form.hidden_field :client_profile_id, value: @client.client_profiles.first.id %>
@@ -13,7 +13,7 @@
       <% end %>
     </div>
 
-    <div class="bg-white rounded shadow p-8">
+    <div class="bg-white rounded shadow p-4 md:p-8">
       <div class="mb-4">
         <h5>First name</h5>
         <div class="border-b-2"><%= @client.first_name %></div>
@@ -61,6 +61,10 @@
           <% end %>  
         <% end %>
       </div>
+    </div>
+
+    <div class="bg-white rounded shadow p-4 md:p-8">
+      
     </div>
   </div>
 </div>
